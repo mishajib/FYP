@@ -6,7 +6,7 @@
             <div class="container">
                 <!-- logo -->
                 <div class="nav-logo">
-                    <a href="index.html" class="logo"><img src="{{ asset('assets/frontend/img/logo.png') }}" alt=""></a>
+                    <a href="{{ route('home') }}" class="logo"><img src="{{ asset('assets/frontend/img/logo.png') }}" alt=""></a>
                 </div>
                 <!-- /logo -->
 

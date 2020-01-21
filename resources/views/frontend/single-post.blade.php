@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="post-meta">
-                        <a class="post-category cat-2" href="category.html">JavaScript</a>
+                        <a class="post-category cat-2" href="{{ route('category') }}">JavaScript</a>
                         <span class="post-date">March 27, 2018</span>
                     </div>
                     <h1>Ask HN: Does Anybody Still Use JQuery?</h1>
@@ -48,18 +48,18 @@
                             <p>Typographers of yore didn't come up with the concept of dummy copy because people thought that content is inconsequential window dressing, only there to be used by designers who can’t be bothered to read. Lorem Ipsum is needed because words matter, a lot. Just fill up a page with draft copy about the client’s business and they will actually read it and comment on it. They will be drawn to it, fiercely. Do it the wrong way and draft copy can derail your design review.</p>
                         </div>
                         <div class="post-shares sticky-shares">
-                            <a href="#" class="share-facebook"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="share-twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="share-google-plus"><i class="fa fa-google-plus"></i></a>
-                            <a href="#" class="share-pinterest"><i class="fa fa-pinterest"></i></a>
-                            <a href="#" class="share-linkedin"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-envelope"></i></a>
+                            <a href="{{ route('home') }}" class="share-facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="{{ route('home') }}" class="share-twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="{{ route('home') }}" class="share-google-plus"><i class="fa fa-google-plus"></i></a>
+                            <a href="{{ route('home') }}" class="share-pinterest"><i class="fa fa-pinterest"></i></a>
+                            <a href="{{ route('home') }}" class="share-linkedin"><i class="fa fa-linkedin"></i></a>
+                            <a href="{{ route('home') }}"><i class="fa fa-envelope"></i></a>
                         </div>
                     </div>
 
                     <!-- ad -->
                     <div class="section-row text-center">
-                        <a href="#" style="display: inline-block;margin: auto;">
+                        <a href="{{ route('home') }}" style="display: inline-block;margin: auto;">
                             <img class="img-responsive" src="{{ asset('assets/frontend/img/ad-2.jpg') }}" alt="">
                         </a>
                     </div>
@@ -78,10 +78,10 @@
                                     </div>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                                     <ul class="author-social">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="{{ route('home') }}"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="{{ route('home') }}"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="{{ route('home') }}"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a href="{{ route('home') }}"><i class="fa fa-instagram"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                     <div class="media-heading">
                                         <h4>John Doe</h4>
                                         <span class="time">March 27, 2018 at 8:00 am</span>
-                                        <a href="#" class="reply">Reply</a>
+                                        <a href="{{ route('home') }}" class="reply">Reply</a>
                                     </div>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
@@ -118,7 +118,7 @@
                                             <div class="media-heading">
                                                 <h4>John Doe</h4>
                                                 <span class="time">March 27, 2018 at 8:00 am</span>
-                                                <a href="#" class="reply">Reply</a>
+                                                <a href="{{ route('home') }}" class="reply">Reply</a>
                                             </div>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                                         </div>
@@ -137,7 +137,7 @@
                                     <div class="media-heading">
                                         <h4>John Doe</h4>
                                         <span class="time">March 27, 2018 at 8:00 am</span>
-                                        <a href="#" class="reply">Reply</a>
+                                        <a href="{{ route('home') }}" class="reply">Reply</a>
                                     </div>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                                 </div>
@@ -190,7 +190,7 @@
                 <div class="col-md-4">
                     <!-- ad -->
                     <div class="aside-widget text-center">
-                        <a href="#" style="display: inline-block;margin: auto;">
+                        <a href="{{ route('home') }}" style="display: inline-block;margin: auto;">
                             <img class="img-responsive" src="{{ asset('assets/frontend/img/ad-1.jpg') }}" alt="">
                         </a>
                     </div>
@@ -203,30 +203,30 @@
                         </div>
 
                         <div class="post post-widget">
-                            <a class="post-img" href="blog-post.html"><img src="{{ asset('assets/frontend/img/widget-1.jpg') }}" alt=""></a>
+                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/widget-1.jpg') }}" alt=""></a>
                             <div class="post-body">
-                                <h3 class="post-title"><a href="blog-post.html">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
+                                <h3 class="post-title"><a href="{{ route('post') }}">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
                             </div>
                         </div>
 
                         <div class="post post-widget">
-                            <a class="post-img" href="blog-post.html"><img src="{{ asset('assets/frontend/img/widget-2.jpg') }}" alt=""></a>
+                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/widget-2.jpg') }}" alt=""></a>
                             <div class="post-body">
-                                <h3 class="post-title"><a href="blog-post.html">Pagedraw UI Builder Turns Your Website Design Mockup Into Code Automatically</a></h3>
+                                <h3 class="post-title"><a href="{{ route('post') }}">Pagedraw UI Builder Turns Your Website Design Mockup Into Code Automatically</a></h3>
                             </div>
                         </div>
 
                         <div class="post post-widget">
-                            <a class="post-img" href="blog-post.html"><img src="{{ asset('assets/frontend/img/widget-3.jpg') }}" alt=""></a>
+                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/widget-3.jpg') }}" alt=""></a>
                             <div class="post-body">
-                                <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On The Backend Development Block!</a></h3>
+                                <h3 class="post-title"><a href="{{ route('post') }}">Why Node.js Is The Coolest Kid On The Backend Development Block!</a></h3>
                             </div>
                         </div>
 
                         <div class="post post-widget">
-                            <a class="post-img" href="blog-post.html"><img src="{{ asset('assets/frontend/img/widget-4.jpg') }}" alt=""></a>
+                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/widget-4.jpg') }}" alt=""></a>
                             <div class="post-body">
-                                <h3 class="post-title"><a href="blog-post.html">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
+                                <h3 class="post-title"><a href="{{ route('post') }}">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
                             </div>
                         </div>
                     </div>
@@ -238,24 +238,24 @@
                             <h2>Featured Posts</h2>
                         </div>
                         <div class="post post-thumb">
-                            <a class="post-img" href="blog-post.html"><img src="{{ asset('assets/frontend/img/post-2.jpg') }}" alt=""></a>
+                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/post-2.jpg') }}" alt=""></a>
                             <div class="post-body">
                                 <div class="post-meta">
-                                    <a class="post-category cat-3" href="#">Jquery</a>
+                                    <a class="post-category cat-3" href="{{ route('home') }}">Jquery</a>
                                     <span class="post-date">March 27, 2018</span>
                                 </div>
-                                <h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still Use JQuery?</a></h3>
+                                <h3 class="post-title"><a href="{{ route('post') }}">Ask HN: Does Anybody Still Use JQuery?</a></h3>
                             </div>
                         </div>
 
                         <div class="post post-thumb">
-                            <a class="post-img" href="blog-post.html"><img src="{{ asset('assets/frontend/img/post-1.jpg') }}" alt=""></a>
+                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/post-1.jpg') }}" alt=""></a>
                             <div class="post-body">
                                 <div class="post-meta">
-                                    <a class="post-category cat-2" href="#">JavaScript</a>
+                                    <a class="post-category cat-2" href="{{ route('home') }}">JavaScript</a>
                                     <span class="post-date">March 27, 2018</span>
                                 </div>
-                                <h3 class="post-title"><a href="blog-post.html">Chrome Extension Protects Against JavaScript-Based CPU Side-Channel Attacks</a></h3>
+                                <h3 class="post-title"><a href="{{ route('post') }}">Chrome Extension Protects Against JavaScript-Based CPU Side-Channel Attacks</a></h3>
                             </div>
                         </div>
                     </div>
@@ -268,10 +268,10 @@
                         </div>
                         <div class="category-widget">
                             <ul>
-                                <li><a href="#" class="cat-1">Web Design<span>340</span></a></li>
-                                <li><a href="#" class="cat-2">JavaScript<span>74</span></a></li>
-                                <li><a href="#" class="cat-4">JQuery<span>41</span></a></li>
-                                <li><a href="#" class="cat-3">CSS<span>35</span></a></li>
+                                <li><a href="{{ route('home') }}" class="cat-1">Web Design<span>340</span></a></li>
+                                <li><a href="{{ route('home') }}" class="cat-2">JavaScript<span>74</span></a></li>
+                                <li><a href="{{ route('home') }}" class="cat-4">JQuery<span>41</span></a></li>
+                                <li><a href="{{ route('home') }}" class="cat-3">CSS<span>35</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -281,15 +281,15 @@
                     <div class="aside-widget">
                         <div class="tags-widget">
                             <ul>
-                                <li><a href="#">Chrome</a></li>
-                                <li><a href="#">CSS</a></li>
-                                <li><a href="#">Tutorial</a></li>
-                                <li><a href="#">Backend</a></li>
-                                <li><a href="#">JQuery</a></li>
-                                <li><a href="#">Design</a></li>
-                                <li><a href="#">Development</a></li>
-                                <li><a href="#">JavaScript</a></li>
-                                <li><a href="#">Website</a></li>
+                                <li><a href="{{ route('home') }}">Chrome</a></li>
+                                <li><a href="{{ route('home') }}">CSS</a></li>
+                                <li><a href="{{ route('home') }}">Tutorial</a></li>
+                                <li><a href="{{ route('home') }}">Backend</a></li>
+                                <li><a href="{{ route('home') }}">JQuery</a></li>
+                                <li><a href="{{ route('home') }}">Design</a></li>
+                                <li><a href="{{ route('home') }}">Development</a></li>
+                                <li><a href="{{ route('home') }}">JavaScript</a></li>
+                                <li><a href="{{ route('home') }}">Website</a></li>
                             </ul>
                         </div>
                     </div>
@@ -302,9 +302,9 @@
                         </div>
                         <div class="archive-widget">
                             <ul>
-                                <li><a href="#">January 2018</a></li>
-                                <li><a href="#">Febuary 2018</a></li>
-                                <li><a href="#">March 2018</a></li>
+                                <li><a href="{{ route('home') }}">January 2018</a></li>
+                                <li><a href="{{ route('home') }}">Febuary 2018</a></li>
+                                <li><a href="{{ route('home') }}">March 2018</a></li>
                             </ul>
                         </div>
                     </div>

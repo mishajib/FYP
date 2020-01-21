@@ -8,10 +8,10 @@
             <div class="row">
                 <div class="col-md-10">
                     <ul class="page-header-breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li>JavaScript</li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
+                        <li>About Us</li>
                     </ul>
-                    <h1>JavaScript</h1>
+                    <h1>About Us</h1>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
                 <div class="col-md-4">
                     <!-- ad -->
                     <div class="aside-widget text-center">
-                        <a href="#" style="display: inline-block;margin: auto;">
+                        <a href="{{ route('home') }}" style="display: inline-block;margin: auto;">
                             <img class="img-responsive" src="{{ asset('assets/frontend/img/ad-1.jpg') }}" alt="">
                         </a>
                     </div>
@@ -68,30 +68,30 @@
                         </div>
 
                         <div class="post post-widget">
-                            <a class="post-img" href="blog-post.html"><img src="{{ asset('assets/frontend/img/widget-1.jpg') }}" alt=""></a>
+                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/widget-1.jpg') }}" alt=""></a>
                             <div class="post-body">
-                                <h3 class="post-title"><a href="blog-post.html">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
+                                <h3 class="post-title"><a href="{{ route('post') }}">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
                             </div>
                         </div>
 
                         <div class="post post-widget">
-                            <a class="post-img" href="blog-post.html"><img src="{{ asset('assets/frontend/img/widget-2.jpg') }}" alt=""></a>
+                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/widget-2.jpg') }}" alt=""></a>
                             <div class="post-body">
-                                <h3 class="post-title"><a href="blog-post.html">Pagedraw UI Builder Turns Your Website Design Mockup Into Code Automatically</a></h3>
+                                <h3 class="post-title"><a href="{{ route('post') }}">Pagedraw UI Builder Turns Your Website Design Mockup Into Code Automatically</a></h3>
                             </div>
                         </div>
 
                         <div class="post post-widget">
-                            <a class="post-img" href="blog-post.html"><img src="{{ asset('assets/frontend/img/widget-3.jpg') }}" alt=""></a>
+                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/widget-3.jpg') }}" alt=""></a>
                             <div class="post-body">
-                                <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On The Backend Development Block!</a></h3>
+                                <h3 class="post-title"><a href="{{ route('post') }}">Why Node.js Is The Coolest Kid On The Backend Development Block!</a></h3>
                             </div>
                         </div>
 
                         <div class="post post-widget">
-                            <a class="post-img" href="blog-post.html"><img src="{{ asset('assets/frontend/img/widget-4.jpg') }}" alt=""></a>
+                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/widget-4.jpg') }}" alt=""></a>
                             <div class="post-body">
-                                <h3 class="post-title"><a href="blog-post.html">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
+                                <h3 class="post-title"><a href="{{ route('post') }}">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
                             </div>
                         </div>
                     </div>

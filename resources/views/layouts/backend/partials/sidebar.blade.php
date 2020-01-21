@@ -5,7 +5,7 @@
             <img src="{{ asset('assets/backend/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-            <a href="#" class="d-block">SUPER ADMIN</a>
+            <a href="{{ route('dashboard') }}" class="d-block">SUPER ADMIN</a>
         </div>
     </div>
 
@@ -15,7 +15,7 @@
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
+                <a href="{{ route('dashboard') }}" class="nav-link active">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                         Dashboard

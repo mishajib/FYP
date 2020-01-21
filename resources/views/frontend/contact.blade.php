@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-10">
                     <ul class="page-header-breadcrumb">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
                         <li>Contact</li>
                     </ul>
                     <h1>Contact</h1>

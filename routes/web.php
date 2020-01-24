@@ -34,3 +34,7 @@ Route::get('contact', function () {
 Route::get('admin/dashboard', function () {
     return view('backend.dashboard');
 })->name("dashboard");
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

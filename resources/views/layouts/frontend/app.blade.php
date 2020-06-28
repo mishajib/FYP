@@ -21,6 +21,9 @@
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}"/>
 
+    <!-- Favicon-->
+    <link rel="icon" href="{{ asset("assets/favicon.png") }}" type="image/x-icon">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -47,6 +50,43 @@
 <script src="{{ asset('assets/frontend/js/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
+<script src="https://unpkg.com/jscroll@2.4.1/dist/jquery.jscroll.min.js"></script>
+<script>
+    $('ul.nav li.dropdown').hover(function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+    }, function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+    });
+</script>
+<script>
+    $('ul.pagination').hide();
+    $(function() {
+        $('.post-scroll').jscroll({
+            autoTrigger: true,
+            autoTriggerUntil:true,
+            refresh: true,
+            loadingHtml: '<img class="center-block" height="200" src="{{ asset('assets/loader.gif') }}" alt="Loading..." />', // MAKE SURE THAT YOU PUT THE CORRECT IMG PATH
+            padding: 0,
+            nextSelector: '.pagination li.active + li a',
+            contentSelector: 'div.post-scroll',
+            callback: function() {
+                $('ul.pagination').remove();
+            }
+        });
 
+        $('.category-scroll').jscroll({
+            autoTrigger: true,
+            autoTriggerUntil:true,
+            refresh: true,
+            loadingHtml: '<img class="center-block" height="100" src="{{ asset('assets/loader.gif') }}" alt="Loading..." />', // MAKE SURE THAT YOU PUT THE CORRECT IMG PATH
+            padding: 0,
+            nextSelector: '.pagination li.active + li a',
+            contentSelector: 'ul.category-scroll',
+            callback: function() {
+                $('ul.pagination').remove();
+            }
+        });
+    });
+</script>
 </body>
 </html>

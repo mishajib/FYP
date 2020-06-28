@@ -1,18 +1,36 @@
 @extends("layouts.frontend.app")
 
-@section("title", "Single Post")
+@section("title", $post->title)
 
 @section("page-header")
     <div id="post-header" class="page-header">
-        <div class="background-img" style="background-image: url({{ url("assets/frontend/img/post-page.jpg") }});"></div>
+        <div class="background-img"
+             style="background-image: url({{ asset('storage/post/'.$post->image) }});"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-10">
                     <div class="post-meta">
-                        <a class="post-category cat-2" href="{{ route('category') }}">JavaScript</a>
-                        <span class="post-date">March 27, 2018</span>
+                        @forelse($post->categories->chunk(4) as $chunk)
+                            @foreach($chunk as $ckey => $category)
+                                <a class="post-category cat-{{ ++$ckey }}"
+                                   href="{{ route('frontend.category.posts', $category->slug) }}">
+                                    {{ $category->name }}
+                                </a>
+                            @endforeach
+                            <br><br>
+
+                        @empty
+                            <a href="javascript:void(0)" class="post-category">
+                                            <span class="text-danger">
+                                                {{ __("No category found!!!") }}
+                                            </span>
+                            </a>
+                        @endforelse
+                        <span class="post-date">
+                                        {{ $post->created_at->format('F d, Y') }}
+                                    </span>
                     </div>
-                    <h1>Ask HN: Does Anybody Still Use JQuery?</h1>
+                    <h1>{{ $post->title }}</h1>
                 </div>
             </div>
         </div>
@@ -30,36 +48,25 @@
                 <div class="col-md-8">
                     <div class="section-row sticky-container">
                         <div class="main-post">
-                            <h3>Lorem Ipsum: when, and when not to use it</h3>
-                            <p>Do you like Cheese Whiz? Spray tan? Fake eyelashes? That's what is Lorem Ipsum to many—it rubs them the wrong way, all the way. It's unreal, uncanny, makes you wonder if something is wrong, it seems to seek your attention for all the wrong reasons. Usually, we prefer the real thing, wine without sulfur based preservatives, real butter, not margarine, and so we'd like our layouts and designs to be filled with real words, with thoughts that count, information that has value. </p>
-                            <p>The toppings you may chose for that TV dinner pizza slice when you forgot to shop for foods, the paint you may slap on your face to impress the new boss is your business. But what about your daily bread? Design comps, layouts, wireframes—will your clients accept that you go about things the facile way? Authorities in our business will tell in no uncertain terms that Lorem Ipsum is that huge, huge no no to forswear forever. Not so fast, I'd say, there are some redeeming factors in favor of greeking text, as its use is merely the symptom of a worse problem to take into consideration.</p>
-                            <figure class="figure-img">
-                                <img class="img-responsive" src="{{ asset('assets/frontend/img/post-4.jpg') }}" alt="">
-                                <figcaption>So Lorem Ipsum is bad (not necessarily)</figcaption>
-                            </figure>
-                            <p>You begin with a text, you sculpt information, you chisel away what's not needed, you come to the point, make things clear, add value, you're a content person, you like words. Design is no afterthought, far from it, but it comes in a deserved second. Anyway, you still use Lorem Ipsum and rightly so, as it will always have a place in the web workers toolbox, as things happen, not always the way you like it, not always in the preferred order. Even if your less into design and more into content strategy you may find some redeeming value with, wait for it, dummy copy, no less.</p>
-                            <p>There's lot of hate out there for a text that amounts to little more than garbled words in an old language. The villagers are out there with a vengeance to get that Frankenstein, wielding torches and pitchforks, wanting to tar and feather it at the least, running it out of town in shame.</p>
-                            <p>One of the villagers, Kristina Halvorson from Adaptive Path, holds steadfastly to the notion that design can’t be tested without real content:</p>
-                            <blockquote class="blockquote">
-                                I’ve heard the argument that “lorem ipsum” is effective in wireframing or design because it helps people focus on the actual layout, or color scheme, or whatever. What kills me here is that we’re talking about creating a user experience that will (whether we like it or not) be DRIVEN by words. The entire structure of the page or app flow is FOR THE WORDS.
-                            </blockquote>
-                            <p>If that's what you think how bout the other way around? How can you evaluate content without design? No typography, no colors, no layout, no styles, all those things that convey the important signals that go beyond the mere textual, hierarchies of information, weight, emphasis, oblique stresses, priorities, all those subtle cues that also have visual and emotional appeal to the reader. Rigid proponents of content strategy may shun the use of dummy copy but then designers might want to ask them to provide style sheets with the copy decks they supply that are in tune with the design direction they require.</p>
-                            <h3>Summing up, if the copy is diverting attention from the design it’s because it’s not up to task.</h3>
-                            <p>Typographers of yore didn't come up with the concept of dummy copy because people thought that content is inconsequential window dressing, only there to be used by designers who can’t be bothered to read. Lorem Ipsum is needed because words matter, a lot. Just fill up a page with draft copy about the client’s business and they will actually read it and comment on it. They will be drawn to it, fiercely. Do it the wrong way and draft copy can derail your design review.</p>
+                            <h3>{{ $post->title }}</h3>
+                            {!! html_entity_decode($post->body) !!}
                         </div>
                         <div class="post-shares sticky-shares">
-                            <a href="{{ route('home') }}" class="share-facebook"><i class="fa fa-facebook"></i></a>
-                            <a href="{{ route('home') }}" class="share-twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="{{ route('home') }}" class="share-google-plus"><i class="fa fa-google-plus"></i></a>
-                            <a href="{{ route('home') }}" class="share-pinterest"><i class="fa fa-pinterest"></i></a>
-                            <a href="{{ route('home') }}" class="share-linkedin"><i class="fa fa-linkedin"></i></a>
-                            <a href="{{ route('home') }}"><i class="fa fa-envelope"></i></a>
+                            <a href="{{ route('frontend.home') }}" class="share-facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="{{ route('frontend.home') }}" class="share-twitter"><i
+                                    class="fa fa-twitter"></i></a>
+                            <a href="{{ route('frontend.home') }}" class="share-google-plus"><i
+                                    class="fa fa-google-plus"></i></a>
+                            <a href="{{ route('frontend.home') }}" class="share-pinterest"><i
+                                    class="fa fa-pinterest"></i></a>
+                            <a href="{{ route('frontend.home') }}" class="share-linkedin"><i class="fa fa-linkedin"></i></a>
+                            <a href="{{ route('frontend.home') }}"><i class="fa fa-envelope"></i></a>
                         </div>
                     </div>
 
                     <!-- ad -->
                     <div class="section-row text-center">
-                        <a href="{{ route('home') }}" style="display: inline-block;margin: auto;">
+                        <a href="{{ route('frontend.home') }}" style="display: inline-block;margin: auto;">
                             <img class="img-responsive" src="{{ asset('assets/frontend/img/ad-2.jpg') }}" alt="">
                         </a>
                     </div>
@@ -70,18 +77,26 @@
                         <div class="post-author">
                             <div class="media">
                                 <div class="media-left">
-                                    <img class="media-object" src="{{ asset('assets/frontend/img/author.png') }}" alt="">
+                                    <img class="media-object" src="{{ asset('storage/profile/'.$post->user->image) }}"
+                                         alt="{{ $post->user->username }}">
                                 </div>
                                 <div class="media-body">
                                     <div class="media-heading">
-                                        <h3>John Doe</h3>
+                                        <h3>{{ $post->user->name }}</h3>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.</p>
                                     <ul class="author-social">
-                                        <li><a href="{{ route('home') }}"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="{{ route('home') }}"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="{{ route('home') }}"><i class="fa fa-google-plus"></i></a></li>
-                                        <li><a href="{{ route('home') }}"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="{{ route('frontend.home') }}"><i class="fa fa-facebook"></i></a>
+                                        </li>
+                                        <li><a href="{{ route('frontend.home') }}"><i class="fa fa-twitter"></i></a>
+                                        </li>
+                                        <li><a href="{{ route('frontend.home') }}"><i class="fa fa-google-plus"></i></a>
+                                        </li>
+                                        <li><a href="{{ route('frontend.home') }}"><i class="fa fa-instagram"></i></a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -99,28 +114,36 @@
                             <!-- comment -->
                             <div class="media">
                                 <div class="media-left">
-                                    <img class="media-object" src="{{ asset('assets/frontend/img/avatar.png') }}" alt="">
+                                    <img class="media-object" src="{{ asset('assets/frontend/img/avatar.png') }}"
+                                         alt="">
                                 </div>
                                 <div class="media-body">
                                     <div class="media-heading">
                                         <h4>John Doe</h4>
                                         <span class="time">March 27, 2018 at 8:00 am</span>
-                                        <a href="{{ route('home') }}" class="reply">Reply</a>
+                                        <a href="{{ route('frontend.home') }}" class="reply">Reply</a>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.</p>
 
                                     <!-- comment -->
                                     <div class="media">
                                         <div class="media-left">
-                                            <img class="media-object" src="{{ asset('assets/frontend/img/avatar.png') }}" alt="">
+                                            <img class="media-object"
+                                                 src="{{ asset('assets/frontend/img/avatar.png') }}" alt="">
                                         </div>
                                         <div class="media-body">
                                             <div class="media-heading">
                                                 <h4>John Doe</h4>
                                                 <span class="time">March 27, 2018 at 8:00 am</span>
-                                                <a href="{{ route('home') }}" class="reply">Reply</a>
+                                                <a href="{{ route('frontend.home') }}" class="reply">Reply</a>
                                             </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                                commodo consequat.</p>
                                         </div>
                                     </div>
                                     <!-- /comment -->
@@ -131,15 +154,19 @@
                             <!-- comment -->
                             <div class="media">
                                 <div class="media-left">
-                                    <img class="media-object" src="{{ asset('assets/frontend/img/avatar.png') }}" alt="">
+                                    <img class="media-object" src="{{ asset('assets/frontend/img/avatar.png') }}"
+                                         alt="">
                                 </div>
                                 <div class="media-body">
                                     <div class="media-heading">
                                         <h4>John Doe</h4>
                                         <span class="time">March 27, 2018 at 8:00 am</span>
-                                        <a href="{{ route('home') }}" class="reply">Reply</a>
+                                        <a href="{{ route('frontend.home') }}" class="reply">Reply</a>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.</p>
                                 </div>
                             </div>
                             <!-- /comment -->
@@ -190,7 +217,7 @@
                 <div class="col-md-4">
                     <!-- ad -->
                     <div class="aside-widget text-center">
-                        <a href="{{ route('home') }}" style="display: inline-block;margin: auto;">
+                        <a href="{{ route('frontend.home') }}" style="display: inline-block;margin: auto;">
                             <img class="img-responsive" src="{{ asset('assets/frontend/img/ad-1.jpg') }}" alt="">
                         </a>
                     </div>
@@ -202,33 +229,27 @@
                             <h2>Most Read</h2>
                         </div>
 
-                        <div class="post post-widget">
-                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/widget-1.jpg') }}" alt=""></a>
-                            <div class="post-body">
-                                <h3 class="post-title"><a href="{{ route('post') }}">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
+                        @forelse($mostReadPost->take(4) as $post)
+                            <div class="post post-widget">
+                                <a class="post-img" href="{{ route('frontend.post.details', $post->slug) }}">
+                                    <img src="{{ asset('storage/post/'.$post->image) }}"
+                                         alt="{{ $post->title }}">
+                                </a>
+                                <div class="post-body">
+                                    <h3 class="post-title">
+                                        <a href="{{ route('frontend.post.details', $post->slug) }}">
+                                            {{ $post->title }}
+                                        </a>
+                                    </h3>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="post post-widget">
-                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/widget-2.jpg') }}" alt=""></a>
-                            <div class="post-body">
-                                <h3 class="post-title"><a href="{{ route('post') }}">Pagedraw UI Builder Turns Your Website Design Mockup Into Code Automatically</a></h3>
-                            </div>
-                        </div>
-
-                        <div class="post post-widget">
-                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/widget-3.jpg') }}" alt=""></a>
-                            <div class="post-body">
-                                <h3 class="post-title"><a href="{{ route('post') }}">Why Node.js Is The Coolest Kid On The Backend Development Block!</a></h3>
-                            </div>
-                        </div>
-
-                        <div class="post post-widget">
-                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/widget-4.jpg') }}" alt=""></a>
-                            <div class="post-body">
-                                <h3 class="post-title"><a href="{{ route('post') }}">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
-                            </div>
-                        </div>
+                        @empty
+                            <h3>
+                                <span class="text-danger">
+                                    {{ __('No post found!!!') }}
+                                </span>
+                            </h3>
+                        @endforelse
                     </div>
                     <!-- /post widget -->
 
@@ -237,27 +258,48 @@
                         <div class="section-title">
                             <h2>Featured Posts</h2>
                         </div>
-                        <div class="post post-thumb">
-                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/post-2.jpg') }}" alt=""></a>
-                            <div class="post-body">
-                                <div class="post-meta">
-                                    <a class="post-category cat-3" href="{{ route('home') }}">Jquery</a>
-                                    <span class="post-date">March 27, 2018</span>
-                                </div>
-                                <h3 class="post-title"><a href="{{ route('post') }}">Ask HN: Does Anybody Still Use JQuery?</a></h3>
-                            </div>
-                        </div>
+                        @forelse($posts->take(2) as $post)
+                            <div class="post post-thumb">
+                                <a class="post-img" href="#">
+                                    <img src="{{ asset('storage/post/'.$post->image) }}"
+                                         alt="{{ $post->title }}">
+                                </a>
+                                <div class="post-body">
+                                    <div class="post-meta">
+                                        @forelse($post->categories->chunk(3) as $chunk)
+                                            @foreach($chunk as $ckey => $category)
+                                                <a class="post-category cat-{{ ++$ckey }}"
+                                                   href="{{ route('frontend.category.posts', $category->slug) }}">
+                                                    {{ $category->name }}
+                                                </a>
+                                            @endforeach
+                                            <br><br>
 
-                        <div class="post post-thumb">
-                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/post-1.jpg') }}" alt=""></a>
-                            <div class="post-body">
-                                <div class="post-meta">
-                                    <a class="post-category cat-2" href="{{ route('home') }}">JavaScript</a>
-                                    <span class="post-date">March 27, 2018</span>
+                                        @empty
+                                            <a href="javascript:void(0)" class="post-category">
+                                            <span class="text-danger">
+                                                {{ __("No category found!!!") }}
+                                            </span>
+                                            </a>
+                                        @endforelse
+                                        <span class="post-date">
+                                            {{ $post->created_at->format('F d, Y') }}
+                                        </span>
+                                    </div>
+                                    <h3 class="post-title">
+                                        <a href="#">
+                                            {{ $post->title }}
+                                        </a>
+                                    </h3>
                                 </div>
-                                <h3 class="post-title"><a href="{{ route('post') }}">Chrome Extension Protects Against JavaScript-Based CPU Side-Channel Attacks</a></h3>
                             </div>
-                        </div>
+                        @empty
+                            <h3>
+                                <span class="text-danger">
+                                    {{ __('No post found!!!') }}
+                                </span>
+                            </h3>
+                        @endforelse
                     </div>
                     <!-- /post widget -->
 
@@ -268,10 +310,17 @@
                         </div>
                         <div class="category-widget">
                             <ul>
-                                <li><a href="{{ route('home') }}" class="cat-1">Web Design<span>340</span></a></li>
-                                <li><a href="{{ route('home') }}" class="cat-2">JavaScript<span>74</span></a></li>
-                                <li><a href="{{ route('home') }}" class="cat-4">JQuery<span>41</span></a></li>
-                                <li><a href="{{ route('home') }}" class="cat-3">CSS<span>35</span></a></li>
+                                @forelse($post->categories as $ckey => $category)
+                                    <li>
+                                        <a href="#" class="cat-{{ ++$ckey }}">
+                                            {{ $category->name }}<span>{{ count($category->posts) }}</span>
+                                        </a>
+                                    </li>
+                                @empty
+                                    <span class="text-danger">
+                                        {{ __("No category found!!!") }}
+                                    </span>
+                                @endforelse
                             </ul>
                         </div>
                     </div>
@@ -281,15 +330,17 @@
                     <div class="aside-widget">
                         <div class="tags-widget">
                             <ul>
-                                <li><a href="{{ route('home') }}">Chrome</a></li>
-                                <li><a href="{{ route('home') }}">CSS</a></li>
-                                <li><a href="{{ route('home') }}">Tutorial</a></li>
-                                <li><a href="{{ route('home') }}">Backend</a></li>
-                                <li><a href="{{ route('home') }}">JQuery</a></li>
-                                <li><a href="{{ route('home') }}">Design</a></li>
-                                <li><a href="{{ route('home') }}">Development</a></li>
-                                <li><a href="{{ route('home') }}">JavaScript</a></li>
-                                <li><a href="{{ route('home') }}">Website</a></li>
+                                @forelse($post->tags as $tag)
+                                    <li>
+                                        <a href="#">
+                                            {{ $tag->name }}
+                                        </a>
+                                    </li>
+                                @empty
+                                    <span class="text-danger">
+                                        {{ __("No tag found!!!") }}
+                                    </span>
+                                @endforelse
                             </ul>
                         </div>
                     </div>
@@ -302,9 +353,9 @@
                         </div>
                         <div class="archive-widget">
                             <ul>
-                                <li><a href="{{ route('home') }}">January 2018</a></li>
-                                <li><a href="{{ route('home') }}">Febuary 2018</a></li>
-                                <li><a href="{{ route('home') }}">March 2018</a></li>
+                                <li><a href="{{ route('frontend.home') }}">January 2018</a></li>
+                                <li><a href="{{ route('frontend.home') }}">Febuary 2018</a></li>
+                                <li><a href="{{ route('frontend.home') }}">March 2018</a></li>
                             </ul>
                         </div>
                     </div>

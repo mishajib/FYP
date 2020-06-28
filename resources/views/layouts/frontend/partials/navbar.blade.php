@@ -1,8 +1,29 @@
 <ul class="nav-menu nav navbar-nav">
-    <li><a href="{{ route('category') }}">News</a></li>
-    <li><a href="{{ route('category') }}">Popular</a></li>
-    <li class="cat-1"><a href="{{ route('category') }}">Web Design</a></li>
-    <li class="cat-2"><a href="{{ route('category') }}">JavaScript</a></li>
-    <li class="cat-3"><a href="{{ route('category') }}">Css</a></li>
-    <li class="cat-4"><a href="{{ route('category') }}">Jquery</a></li>
+    <li><a href="#">News</a></li>
+    <li><a href="{{ route('frontend.posts') }}">Popular</a></li>
+    @forelse($categories->where('is_approved', 1)->where('status', 1)->whereNull('parent_id') as $key => $category)
+        <li class="cat-{{ ++$key }} dropdown">
+            <a class="nav-link dropdown-toggle" href="{{ route('frontend.category.posts', $category->slug) }}">
+                {{ $category->name }}
+            </a>
+
+
+            @if(count($category->children))
+                <ul class="dropdown-menu">
+                    @forelse($category->children->where('status', 1)->where('is_approved', 1)->whereNotNull('parent_id') as $ckey => $child)
+                        @if($child->approved()->active())
+                            <li class="cat-{{ ++$ckey }}">
+                                <a href="{{ route('frontend.category.posts', $child->slug) }}">{{ $child->name }}</a>
+                            </li>
+                        @endif
+                    @empty
+                        <span class="text-danger">{{ __("No child category found!!!") }}</span>
+                    @endforelse
+                </ul>
+            @endif
+        </li>
+    @empty
+        <li><span class="text-danger">{{ __('No data found!!!') }}</span></li>
+    @endforelse
+
 </ul>

@@ -6,13 +6,14 @@
             <div class="container">
                 <!-- logo -->
                 <div class="nav-logo">
-                    <a href="{{ route('home') }}" class="logo"><img src="{{ asset('assets/frontend/img/logo.png') }}" alt=""></a>
+                    <a href="{{ route('frontend.home') }}" class="logo"><img
+                            src="{{ asset('assets/frontend/img/logo.png') }}" alt=""></a>
                 </div>
                 <!-- /logo -->
 
                 <!-- nav -->
-                    @include("layouts.frontend.partials.navbar")
-                <!-- /nav -->
+            @include("layouts.frontend.partials.navbar")
+            <!-- /nav -->
 
                 <!-- search & aside toggle -->
                 <div class="nav-btns">
@@ -31,12 +32,33 @@
         <!-- Aside Nav -->
         <div id="nav-aside">
             <!-- nav -->
-                @include("layouts.frontend.partials.side-navbar")
-            <!-- /nav -->
+        @include("layouts.frontend.partials.side-navbar")
+        <!-- /nav -->
 
             <!-- widget posts -->
-                @include("layouts.frontend.partials.sidenav-widgets")
-            <!-- /widget posts -->
+        @include("layouts.frontend.partials.sidenav-widgets")
+        <!-- /widget posts -->
+
+            <!-- categories -->
+            <div class="section-row">
+                <h2>Catagories</h2>
+                <div class="category-widget">
+                    <ul>
+                        @forelse($categories->where('is_approved', 1)->where('status', 1) as $ckey => $category)
+                            <li>
+                                <a href="{{ route('frontend.category.posts', $category->slug) }}" class="cat-{{ ++$ckey }}">
+                                    {{ $category->name }}<span>{{ count($category->posts) }}</span>
+                                </a>
+                            </li>
+                        @empty
+                            <span class="text-danger">
+                                        {{ __("No category found!!!") }}
+                                    </span>
+                        @endforelse
+                    </ul>
+                </div>
+            </div>
+            <!-- /categories -->
 
             <!-- social links -->
             <div class="section-row">
@@ -60,6 +82,6 @@
 
 
     <!-- Page Header -->
-        @yield("page-header")
-    <!-- /Page Header -->
+@yield("page-header")
+<!-- /Page Header -->
 </header>

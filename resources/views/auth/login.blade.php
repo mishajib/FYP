@@ -7,13 +7,13 @@
 <body class="hold-transition login-page">
     <div class="login-box">
       <div class="login-logo">
-      <a href="{{ route('home') }}"><b>{{ config("app.name") }}</b></a>
+      <a href="{{ route('frontend.home') }}"><b>{{ config("app.name") }}</b></a>
       </div>
       <!-- /.login-logo -->
       <div class="card">
         <div class="card-body login-card-body">
           <p class="login-box-msg">Sign in to start your session</p>
-    
+
           <form action="{{ route('login') }}" method="POST">
             @csrf
 
@@ -59,7 +59,7 @@
               <!-- /.col -->
             </div>
           </form>
-    
+
           @if (Route::has('password.request'))
           <p class="mb-1">
             <a href="{{ route('password.request') }}">I forgot my password</a>

@@ -15,6 +15,17 @@
 <link rel="stylesheet" href="{{ asset('assets/backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- Theme style -->
 <link rel="stylesheet" href="{{ asset('assets/backend/dist/css/adminlte.min.css') }}">
+
+    <!-- Favicon-->
+    <link rel="icon" href="{{ asset('assets/favicon.png') }}" type="image/x-icon">
+
+    @notifyCss
+    <style>
+        .notify-alert {
+            top: 60px;
+        }
+    </style>
+
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>

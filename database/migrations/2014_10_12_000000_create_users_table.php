@@ -15,12 +15,26 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('username')->unique();
             $table->string('name');
+            $table->string('title')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('phone_number');
+            $table->string('image')->default(asset('assets/favicon.png'));
+            $table->text('about')->nullable();
+            $table->string('slug')->unique();
+            $table->boolean('status')->default(false);
+            $table->boolean('is_approved')->default(false);
+            $table->ipAddress('client_ip');
+            $table->string("machine_name");
             $table->string('password');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
         });
     }
 

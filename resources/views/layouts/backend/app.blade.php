@@ -7,11 +7,19 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-    <a href="{{ route('dashboard') }}" class="brand-link">
-            <img src="{{ asset('assets/backend/dist/img/AdminLTELogo.png') }}" alt="FYP" class="brand-image img-circle elevation-3"
-                 style="opacity: .8">
-            <span class="brand-text font-weight-light">FYP</span>
-        </a>
+        @hasanyrole('super|admin')
+            <a href="{{ route('admin.dashboard') }}" class="brand-link">
+                <img src="{{ asset('assets/backend/dist/img/AdminLTELogo.png') }}" alt="FYP" class="brand-image img-circle elevation-3"
+                     style="opacity: .8">
+                <span class="brand-text font-weight-light">FYP</span>
+            </a>
+        @else
+            <a href="{{ route('user.dashboard') }}" class="brand-link">
+                <img src="{{ asset('assets/backend/dist/img/AdminLTELogo.png') }}" alt="FYP" class="brand-image img-circle elevation-3"
+                     style="opacity: .8;">
+                <span class="brand-text font-weight-light">FYP</span>
+            </a>
+        @endhasanyrole
 
         <!-- Sidebar -->
             @include("layouts.backend.partials.sidebar")

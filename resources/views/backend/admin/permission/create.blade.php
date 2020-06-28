@@ -1,0 +1,45 @@
+@extends("layouts.backend.app")
+
+@section("title", "Create Permission")
+
+@section("content")
+@section("content-header", "Add new permission")
+@section("from-breadcrumb", "Create Permission")
+@section("breadcrumb-url", route('admin.permissions.index'))
+@section("to-breadcrumb", "Dashboard")
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Add new permission</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form" action="{{ route('admin.permissions.store') }}" method="POST">
+                    @csrf
+
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required
+                                   placeholder="Enter name" value="{{ old('name') }}">
+                        </div>
+
+                    </div>
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <a class="btn btn-dark" href="{{ route('admin.permissions.index') }}">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@stop

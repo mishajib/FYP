@@ -6,7 +6,7 @@
             <div class="col-md-5">
                 <div class="footer-widget">
                     <div class="footer-logo">
-                        <a href="{{ route('home') }}" class="logo"><img src="{{ asset('assets/frontend/img/logo.png') }}" alt=""></a>
+                        <a href="{{ route('frontend.home') }}" class="logo"><img src="{{ asset('assets/frontend/img/logo.png') }}" alt=""></a>
                     </div>
                     <ul class="footer-nav">
                         <li><a href="#">Privacy Policy</a></li>
@@ -25,9 +25,23 @@
                         <div class="footer-widget">
                             <h3 class="footer-title">About Us</h3>
                             <ul class="footer-links">
-                                <li><a href="{{ route('about') }}">About Us</a></li>
-                                <li><a href="{{ route('home') }}">Join Us</a></li>
-                                <li><a href="{{ route('contact') }}">Contacts</a></li>
+                                <li><a href="#">About Us</a></li>
+                                @if(Route::has('register'))
+                                    @auth
+                                        @if(Auth::user()->hasAnyRole(['super', 'admin']))
+                                            <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                        @else
+                                            <li><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
+                                        @endif
+                                    @else
+                                        <li>
+                                            <a href="{{ route('register') }}">
+                                                Join Us
+                                            </a>
+                                        </li>
+                                    @endauth
+                                @endif
+                                <li><a href="#">Contacts</a></li>
                             </ul>
                         </div>
                     </div>
@@ -35,10 +49,17 @@
                         <div class="footer-widget">
                             <h3 class="footer-title">Catagories</h3>
                             <ul class="footer-links">
-                                <li><a href="{{ route('category') }}">Web Design</a></li>
-                                <li><a href="{{ route('category') }}">JavaScript</a></li>
-                                <li><a href="{{ route('category') }}">Css</a></li>
-                                <li><a href="{{ route('category') }}">Jquery</a></li>
+                                @forelse($categories->where('is_approved', 1)->where('status', 1)->take(5) as $category)
+                                    <li>
+                                        <a href="{{ route('frontend.category.posts', $category->slug) }}">
+                                            {{ $category->name }}
+                                        </a>
+                                    </li>
+                                @empty
+                                    <span class="text-danger">
+                                        {{ __("No data found!!!") }}
+                                    </span>
+                                @endforelse
                             </ul>
                         </div>
                     </div>

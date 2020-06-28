@@ -1,6 +1,6 @@
 @extends("layouts.frontend.app")
 
-@section("title", "Category")
+@section("title", $category->name)
 
 @section("page-header")
     <div class="page-header">
@@ -8,10 +8,10 @@
             <div class="row">
                 <div class="col-md-10">
                     <ul class="page-header-breadcrumb">
-                        <li><a href="{{ route('home') }}">Home</a></li>
-                        <li>JavaScript</li>
+                        <li><a href="{{ route('frontend.home') }}">Home</a></li>
+                        <li>{{ $category->name }}</li>
                     </ul>
-                    <h1>JavaScript</h1>
+                    <h1>{{ $category->name }}</h1>
                 </div>
             </div>
         </div>
@@ -27,50 +27,93 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="row">
-                        <!-- post -->
-                        <div class="col-md-12">
-                            <div class="post post-thumb">
-                                <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/post-1.jpg') }}" alt=""></a>
-                                <div class="post-body">
-                                    <div class="post-meta">
-                                        <a class="post-category cat-2" href="#">JavaScript</a>
-                                        <span class="post-date">March 27, 2018</span>
-                                    </div>
-                                    <h3 class="post-title"><a href="{{ route('post') }}">Javascript : Prototype vs Class</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /post -->
+                    @forelse($posts->take(3) as $key => $post)
+                        @if(++$key == 1)
+                            <!-- post -->
+                                <div class="col-md-12">
+                                    <div class="post post-thumb">
+                                        <a class="post-img" href="{{ route('frontend.post.details', $post->slug) }}">
+                                            <img src="{{ asset('storage/post/'.$post->image) }}"
+                                                 alt="{{ $post->title }}">
+                                        </a>
+                                        <div class="post-body">
+                                            <div class="post-meta">
+                                                @forelse($post->categories->chunk(3) as $chunk)
+                                                    @foreach($chunk as $ckey => $category)
+                                                        <a class="post-category cat-{{ ++$ckey }}"
+                                                           href="{{ route('frontend.category.posts', $category->slug) }}">
+                                                            {{ $category->name }}
+                                                        </a>
+                                                    @endforeach
+                                                    <br><br>
 
-                        <!-- post -->
-                        <div class="col-md-6">
-                            <div class="post">
-                                <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/post-4.jpg') }}" alt=""></a>
-                                <div class="post-body">
-                                    <div class="post-meta">
-                                        <a class="post-category cat-2" href="#">JavaScript</a>
-                                        <span class="post-date">March 27, 2018</span>
+                                                @empty
+                                                    <a href="javascript:void(0)" class="post-category">
+                                            <span class="text-danger">
+                                                {{ __("No category found!!!") }}
+                                            </span>
+                                                    </a>
+                                                @endforelse
+                                                <span class="post-date">
+                                        {{ $post->created_at->format('F d, Y') }}
+                                    </span>
+                                            </div>
+                                            <h3 class="post-title">
+                                                <a href="{{ route('frontend.post.details', $post->slug) }}">
+                                                    {{ $post->title }}
+                                                </a>
+                                            </h3>
+                                        </div>
                                     </div>
-                                    <h3 class="post-title"><a href="{{ route('post') }}">Chrome Extension Protects Against JavaScript-Based CPU Side-Channel Attacks</a></h3>
                                 </div>
-                            </div>
-                        </div>
-                        <!-- /post -->
+                                <!-- /post -->
+                        @else
+                            <!-- post -->
+                                <div class="col-md-6">
+                                    <div class="post">
+                                        <a class="post-img" href="{{ route('frontend.post.details', $post->slug) }}">
+                                            <img src="{{ asset('storage/post/'.$post->image) }}"
+                                                 alt="{{ $post->title }}">
+                                        </a>
+                                        <div class="post-body">
+                                            <div class="post-meta">
+                                                @forelse($post->categories->chunk(3) as $chunk)
+                                                    @foreach($chunk as $ckey => $category)
+                                                        <a class="post-category cat-{{ ++$ckey }}"
+                                                           href="{{ route('frontend.category.posts', $category->slug) }}">
+                                                            {{ $category->name }}
+                                                        </a>
+                                                    @endforeach
+                                                    <br><br>
 
-                        <!-- post -->
-                        <div class="col-md-6">
-                            <div class="post">
-                                <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/post-6.jpg') }}" alt=""></a>
-                                <div class="post-body">
-                                    <div class="post-meta">
-                                        <a class="post-category cat-2" href="#">JavaScript</a>
-                                        <span class="post-date">March 27, 2018</span>
+                                                @empty
+                                                    <a href="javascript:void(0)" class="post-category">
+                                            <span class="text-danger">
+                                                {{ __("No category found!!!") }}
+                                            </span>
+                                                    </a>
+                                                @endforelse
+                                                <span class="post-date">
+                                        {{ $post->created_at->format('F d, Y') }}
+                                    </span>
+                                            </div>
+                                            <h3 class="post-title">
+                                                <a href="{{ route('frontend.post.details', $post->slug) }}">
+                                                    {{ $post->title }}
+                                                </a>
+                                            </h3>
+                                        </div>
                                     </div>
-                                    <h3 class="post-title"><a href="{{ route('post') }}">Why Node.js Is The Coolest Kid On The Backend Development Block!</a></h3>
                                 </div>
-                            </div>
-                        </div>
-                        <!-- /post -->
+                                <!-- /post -->
+                            @endif
+                        @empty
+                            <h2>
+                            <span class="text-danger">
+                                {{ __("No post found!!!") }}
+                            </span>
+                            </h2>
+                        @endforelse
 
                         <div class="clearfix visible-md visible-lg"></div>
 
@@ -78,80 +121,65 @@
                         <div class="col-md-12">
                             <div class="section-row">
                                 <a href="#">
-                                    <img class="img-responsive center-block" src="{{ asset('assets/frontend/img/ad-2.jpg') }}" alt="">
+                                    <img class="img-responsive center-block"
+                                         src="{{ asset('assets/frontend/img/ad-2.jpg') }}" alt="">
                                 </a>
                             </div>
                         </div>
                         <!-- ad -->
 
                         <!-- post -->
-                        <div class="col-md-12">
-                            <div class="post post-row">
-                                <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/post-2.jpg') }}" alt=""></a>
-                                <div class="post-body">
-                                    <div class="post-meta">
-                                        <a class="post-category cat-2" href="#">JavaScript</a>
-                                        <span class="post-date">March 27, 2018</span>
+                        <div class="post-scroll">
+                            @forelse($posts as $post)
+                                <div class="col-md-12">
+                                    <div class="post post-row">
+                                        <a class="post-img" href="{{ route('frontend.post.details', $post->slug) }}">
+                                            <img src="{{ asset('storage/post/'.$post->image) }}"
+                                                 alt="{{ $post->title }}">
+                                        </a>
+                                        <div class="post-body">
+                                            <div class="post-meta">
+                                                @forelse($post->categories->chunk(3) as $chunk)
+                                                    @foreach($chunk as $ckey => $category)
+                                                        <a class="post-category cat-{{ ++$ckey }}"
+                                                           href="{{ route('frontend.category.posts', $category->slug) }}">
+                                                            {{ $category->name }}
+                                                        </a>
+                                                    @endforeach
+                                                    <br><br>
+
+                                                @empty
+                                                    <a href="javascript:void(0)" class="post-category">
+                                            <span class="text-danger">
+                                                {{ __("No category found!!!") }}
+                                            </span>
+                                                    </a>
+                                                @endforelse
+                                                <span class="post-date">
+                                        {{ $post->created_at->format('F d, Y') }}
+                                    </span>
+                                            </div>
+                                            <h3 class="post-title">
+                                                <a href="{{ route('frontend.post.details', $post->slug) }}">
+                                                    {{ $post->title }}
+                                                </a>
+                                            </h3>
+                                            <p>
+                                                {{ Str::limit(strip_tags($post->body), '148', '...') }}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <h3 class="post-title"><a href="{{ route('post') }}">Ask HN: Does Anybody Still Use JQuery?</a></h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
                                 </div>
-                            </div>
-                        </div>
+                            @empty
+                                <h2>
+                                <span class="text-danger">
+                                    {{ __("No post found!!!") }}
+                                </span>
+                                </h2>
+                            @endforelse
                         <!-- /post -->
 
-                        <!-- post -->
-                        <div class="col-md-12">
-                            <div class="post post-row">
-                                <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/post-5.jpg') }}" alt=""></a>
-                                <div class="post-body">
-                                    <div class="post-meta">
-                                        <a class="post-category cat-2" href="#">JavaScript</a>
-                                        <span class="post-date">March 27, 2018</span>
-                                    </div>
-                                    <h3 class="post-title"><a href="{{ route('post') }}">Microsoft’s TypeScript Fills A Long-standing Void In JavaScript</a></h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /post -->
-
-                        <!-- post -->
-                        <div class="col-md-12">
-                            <div class="post post-row">
-                                <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/post-3.jpg') }}" alt=""></a>
-                                <div class="post-body">
-                                    <div class="post-meta">
-                                        <a class="post-category cat-2" href="#">JavaScript</a>
-                                        <span class="post-date">March 27, 2018</span>
-                                    </div>
-                                    <h3 class="post-title"><a href="{{ route('post') }}">Javascript : Prototype vs Class</a></h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /post -->
-
-                        <!-- post -->
-                        <div class="col-md-12">
-                            <div class="post post-row">
-                                <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/post-1.jpg') }}" alt=""></a>
-                                <div class="post-body">
-                                    <div class="post-meta">
-                                        <a class="post-category cat-2" href="#">JavaScript</a>
-                                        <span class="post-date">March 27, 2018</span>
-                                    </div>
-                                    <h3 class="post-title"><a href="{{ route('post') }}">Why Node.js Is The Coolest Kid On The Backend Development Block!</a></h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /post -->
-
-                        <div class="col-md-12">
-                            <div class="section-row">
-                                <button class="primary-button center-block">Load More</button>
-                            </div>
+                            {{ $posts->links() }}
                         </div>
                     </div>
                 </div>
@@ -171,33 +199,27 @@
                             <h2>Most Read</h2>
                         </div>
 
-                        <div class="post post-widget">
-                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/widget-1.jpg') }}" alt=""></a>
-                            <div class="post-body">
-                                <h3 class="post-title"><a href="{{ route('post') }}">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
+                        @forelse($mostReadPost->take(4) as $post)
+                            <div class="post post-widget">
+                                <a class="post-img" href="{{ route('frontend.post.details', $post->slug) }}">
+                                    <img src="{{ asset('storage/post/'.$post->image) }}"
+                                         alt="{{ $post->title }}">
+                                </a>
+                                <div class="post-body">
+                                    <h3 class="post-title">
+                                        <a href="{{ route('frontend.post.details', $post->slug) }}">
+                                            {{ $post->title }}
+                                        </a>
+                                    </h3>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="post post-widget">
-                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/widget-2.jpg') }}" alt=""></a>
-                            <div class="post-body">
-                                <h3 class="post-title"><a href="{{ route('post') }}">Pagedraw UI Builder Turns Your Website Design Mockup Into Code Automatically</a></h3>
-                            </div>
-                        </div>
-
-                        <div class="post post-widget">
-                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/widget-3.jpg') }}" alt=""></a>
-                            <div class="post-body">
-                                <h3 class="post-title"><a href="{{ route('post') }}">Why Node.js Is The Coolest Kid On The Backend Development Block!</a></h3>
-                            </div>
-                        </div>
-
-                        <div class="post post-widget">
-                            <a class="post-img" href="{{ route('post') }}"><img src="{{ asset('assets/frontend/img/widget-4.jpg') }}" alt=""></a>
-                            <div class="post-body">
-                                <h3 class="post-title"><a href="{{ route('post') }}">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
-                            </div>
-                        </div>
+                        @empty
+                            <h3>
+                                <span class="text-danger">
+                                    {{ __('No post found!!!') }}
+                                </span>
+                            </h3>
+                        @endforelse
                     </div>
                     <!-- /post widget -->
 
@@ -207,11 +229,20 @@
                             <h2>Catagories</h2>
                         </div>
                         <div class="category-widget">
-                            <ul>
-                                <li><a href="#" class="cat-1">Web Design<span>340</span></a></li>
-                                <li><a href="#" class="cat-2">JavaScript<span>74</span></a></li>
-                                <li><a href="#" class="cat-4">JQuery<span>41</span></a></li>
-                                <li><a href="#" class="cat-3">CSS<span>35</span></a></li>
+                            <ul class="category-scroll">
+                                @forelse($categories->where('is_approved', 1)->where('status', 1) as $ckey => $category)
+                                    <li>
+                                        <a href="{{ route('frontend.category.posts', $category->slug) }}"
+                                           class="cat-{{ ++$ckey }}">
+                                            {{ $category->name }}<span>{{ count($category->posts) }}</span>
+                                        </a>
+                                    </li>
+                                @empty
+                                    <span class="text-danger">
+                                        {{ __("No category found!!!") }}
+                                    </span>
+                                @endforelse
+                                {{ $categories->links() }}
                             </ul>
                         </div>
                     </div>
@@ -221,15 +252,17 @@
                     <div class="aside-widget">
                         <div class="tags-widget">
                             <ul>
-                                <li><a href="#">Chrome</a></li>
-                                <li><a href="#">CSS</a></li>
-                                <li><a href="#">Tutorial</a></li>
-                                <li><a href="#">Backend</a></li>
-                                <li><a href="#">JQuery</a></li>
-                                <li><a href="#">Design</a></li>
-                                <li><a href="#">Development</a></li>
-                                <li><a href="#">JavaScript</a></li>
-                                <li><a href="#">Website</a></li>
+                                @forelse($post->tags as $tag)
+                                    <li>
+                                        <a href="#">
+                                            {{ $tag->name }}
+                                        </a>
+                                    </li>
+                                @empty
+                                    <span class="text-danger">
+                                        {{ __("No tag found!!!") }}
+                                    </span>
+                                @endforelse
                             </ul>
                         </div>
                     </div>

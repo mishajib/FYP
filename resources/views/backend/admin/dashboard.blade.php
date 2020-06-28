@@ -4,8 +4,8 @@
 
 @section("content")
     @section("content-header", "Dashboard")
-    @section("from-breadcrumb", "Admin")
-    @section("breadcrumb-url", "#")
+    @section("from-breadcrumb", "Super Admin")
+    @section("breadcrumb-url", route('admin.dashboard'))
     @section("to-breadcrumb", "Dashboard")
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->

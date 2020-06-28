@@ -1,6 +1,18 @@
 @extends("layouts.frontend.app")
 
-@section("title", "All Posts")
+@section("title", $query)
+
+@section('page-header')
+    <div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="text-center">{{ $posts->count() }} results for {{ $query }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
 
 @section("content")
     <!-- section -->
@@ -9,11 +21,6 @@
         <div class="container">
             <!-- row -->
             <div class="row">
-                <div class="col-md-12">
-                    <div class="section-title">
-                        <h1 class="text-center">All Posts</h1>
-                    </div>
-                </div>
                 <!-- post -->
                 <div class="post-scroll">
                     @forelse($posts as $post)

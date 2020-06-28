@@ -19,10 +19,12 @@
                 <div class="nav-btns">
                     <button class="aside-btn"><i class="fa fa-bars"></i></button>
                     <button class="search-btn"><i class="fa fa-search"></i></button>
-                    <div class="search-form">
-                        <input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
-                        <button class="search-close"><i class="fa fa-times"></i></button>
-                    </div>
+                    <form action="{{ route('frontend.search') }}">
+                        <div class="search-form">
+                            <input class="search-input" type="text" name="query" placeholder="Enter Your Search ..." value="{{ isset($query) ? $query : '' }}">
+                            <button type="button" class="search-close"><i class="fa fa-times"></i></button>
+                        </div>
+                    </form>
                 </div>
                 <!-- /search & aside toggle -->
             </div>

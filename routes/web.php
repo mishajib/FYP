@@ -130,11 +130,12 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middl
 });
 
 Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () {
-    Route::get('/', 'HomeController@index')->name(  'home');
+    Route::get('/', 'HomeController@index')->name('home');
     Route::get('post/{slug}', 'PostController@details')->name('post.details');
     Route::get('/category/{slug}', 'PostController@postByCategory')->name('category.posts');
     Route::get('/tag/{slug}', 'PostController@postByTag')->name('tag.posts');
     Route::get('/posts', 'PostController@index')->name('posts');
+    Route::get('/search', 'SearchController@search')->name('search');
 
 });
 

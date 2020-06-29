@@ -78,7 +78,7 @@
                                     @forelse($tags as $tag)
                                         <option
                                             @foreach($post->tags as $postTag)
-                                            {{ $postCategory->id == $tag->id ? 'selected' : ''}}
+                                            {{ $postTag->id == $tag->id ? 'selected' : ''}}
                                             @endforeach
                                             value="{{ $tag->id }}">{{ $tag->name }}</option>
                                     @empty

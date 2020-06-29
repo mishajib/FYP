@@ -64,9 +64,9 @@ class CategoryController extends Controller
         $request->validated();
         try {
             $category = new Category();
-            $category->parent_id = $request->category;
             $category->name = Str::ucfirst($request->name);
             $category->slug = Str::slug($request->name);
+            $category->parent_id = $request->category;
             if (Auth::user()->hasRole('super')) {
                 $category->is_approved = true;
             } else {
@@ -129,9 +129,9 @@ class CategoryController extends Controller
         $request->validated();
         try {
             $category = Category::findOrFail($id);
-            $category->parent_id = $request->category;
             $category->name = Str::ucfirst($request->name);
             $category->slug = Str::slug($request->name);
+            $category->parent_id = $request->category;
             if (Auth::user()->hasRole('super')) {
                 $category->is_approved = true;
             } else {

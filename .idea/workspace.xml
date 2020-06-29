@@ -8,11 +8,6 @@
       </path>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
       <path>
@@ -24,13 +19,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2424f59f-c074-4021-939e-1f5d2ecaf4e2" name="Default Changelist" comment="all functionality added [backend - ( user role, role permission, user permission, permission, category, tag, post, profile)],&#10;[frontend - (dynamic home page, single post page dynamic, dynamic category post page, added loader)]">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Frontend/SearchController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/frontend/search.blade.php" afterDir="false" />
+    <list default="true" id="2424f59f-c074-4021-939e-1f5d2ecaf4e2" name="Default Changelist" comment="Added Post Show Page at General User Dashboard">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/posts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/posts.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/frontend/partials/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/frontend/partials/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PostController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/User/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/User/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/PostController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/user/post/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/user/post/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/user/post/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/user/post/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/user/post/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/user/post/show.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,9 +38,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable path="composer" />
-    </execution>
+    <execution />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -50,13 +47,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="hiddenUrls">
-      <set>
-        <option value="https://github.com/mishajib/FYP.git" />
-      </set>
-    </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -159,7 +149,7 @@
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
     </include_path>
   </component>
-  <component name="ProjectId" id="1dXLZyRzOPFAfBqRpJqsEjOVyyR" />
+  <component name="ProjectId" id="1dxNAa7ikhPFaTdhVvLrW4inZBI" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -168,32 +158,17 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/frontend" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/Http/Controllers/Frontend" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/frontend" />
-      <recent name="$PROJECT_DIR$/app/Http/Controllers/User" />
-      <recent name="$PROJECT_DIR$/resources/views/backend/user" />
-      <recent name="$PROJECT_DIR$/resources/views/backend/admin/post" />
-      <recent name="$PROJECT_DIR$/resources/views/backend/admin" />
-    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -207,48 +182,14 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="2424f59f-c074-4021-939e-1f5d2ecaf4e2" name="Default Changelist" comment="" />
-      <created>1592566550551</created>
+      <created>1593362641339</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1592566550551</updated>
-      <workItem from="1592566566158" duration="20355000" />
-      <workItem from="1592592803270" duration="57000" />
-      <workItem from="1592592901074" duration="2247000" />
-      <workItem from="1592664549178" duration="9898000" />
-      <workItem from="1592736080330" duration="23301000" />
-      <workItem from="1592804506220" duration="518000" />
-      <workItem from="1592819267660" duration="3068000" />
-      <workItem from="1592835044196" duration="7138000" />
-      <workItem from="1592912977200" duration="1232000" />
-      <workItem from="1592925703761" duration="599000" />
-      <workItem from="1592934310869" duration="7208000" />
-      <workItem from="1592941524597" duration="1445000" />
-      <workItem from="1593011446429" duration="6751000" />
-      <workItem from="1593083019856" duration="7281000" />
-      <workItem from="1593094494423" duration="10806000" />
-      <workItem from="1593158937672" duration="15349000" />
-      <workItem from="1593185555682" duration="743000" />
-      <workItem from="1593186307619" duration="7000" />
-      <workItem from="1593186356820" duration="18380000" />
-      <workItem from="1593247925890" duration="6267000" />
-      <workItem from="1593270365748" duration="18806000" />
-      <workItem from="1593336863369" duration="17092000" />
+      <updated>1593362641339</updated>
+      <workItem from="1593362642846" duration="431000" />
+      <workItem from="1593405552329" duration="1851000" />
+      <workItem from="1593453691097" duration="9349000" />
     </task>
-    <task id="LOCAL-00001" summary="all functionality added [backend - ( user role, role permission, user permission, permission, category, tag, post, profile)],&#10;[frontend - (dynamic home page, single post page dynamic, dynamic category post page, added loader)]">
-      <created>1593353151564</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1593353151564</updated>
-    </task>
-    <task id="LOCAL-00002" summary="all functionality added [backend - ( user role, role permission, user permission, permission, category, tag, post, profile)],&#10;[frontend - (dynamic home page, single post page dynamic, dynamic category post page, added loader)]">
-      <created>1593353190405</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1593353190405</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,52 +208,29 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="all functionality added [backend - ( user role, role permission, user permission, permission, category, tag, post, profile)],&#10;[frontend - (dynamic home page, single post page dynamic, dynamic category post page, added loader)]" />
-    <option name="LAST_COMMIT_MESSAGE" value="all functionality added [backend - ( user role, role permission, user permission, permission, category, tag, post, profile)],&#10;[frontend - (dynamic home page, single post page dynamic, dynamic category post page, added loader)]" />
+    <MESSAGE value="Added Post Show Page at General User Dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Post Show Page at General User Dashboard" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="416" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1593028526029">
-      <screen x="0" y="27" width="1366" height="741" />
-    </state>
-    <state x="416" y="155" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1366.741@0.27.1366.741" timestamp="1593028526029" />
-    <state x="416" y="312" width="523" height="177" key="ComposerInitDialogKey" timestamp="1593248076048">
+    <state x="454" y="313" width="448" height="176" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593362901882">
       <screen x="0" y="28" width="1366" height="740" />
     </state>
-    <state x="416" y="312" width="523" height="177" key="ComposerInitDialogKey/0.28.1366.740@0.28.1366.740" timestamp="1593248076048" />
-    <state x="297" y="117" width="761" height="568" key="NewPhpClassDialog" timestamp="1593027039475">
-      <screen x="0" y="27" width="1366" height="741" />
-    </state>
-    <state x="297" y="117" width="761" height="568" key="NewPhpClassDialog/0.27.1366.741@0.27.1366.741" timestamp="1593027039475" />
-    <state x="478" y="323" width="399" height="156" key="NewPhpFileDialog" timestamp="1592583349490">
-      <screen x="0" y="27" width="1366" height="741" />
-    </state>
-    <state x="478" y="323" width="399" height="156" key="NewPhpFileDialog/0.27.1366.741@0.27.1366.741" timestamp="1592583349490" />
-    <state x="278" y="134" width="800" height="534" key="Vcs.Push.Dialog.v2" timestamp="1593353222458">
+    <state x="454" y="313" width="448" height="176" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.28.1366.740@0.28.1366.740" timestamp="1593362901882" />
+    <state x="320" y="92" width="715" height="618" key="git4idea.branch.GitSmartOperationDialog" timestamp="1593362349107">
       <screen x="0" y="28" width="1366" height="740" />
     </state>
-    <state x="278" y="134" width="800" height="534" key="Vcs.Push.Dialog.v2/0.28.1366.740@0.28.1366.740" timestamp="1593353222458" />
-    <state x="454" y="313" width="448" height="176" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593353638536">
+    <state x="320" y="92" width="715" height="618" key="git4idea.branch.GitSmartOperationDialog/0.28.1366.740@0.28.1366.740" timestamp="1593362349107" />
+    <state x="359" y="186" width="647" height="429" key="git4idea.merge.GitPullDialog" timestamp="1593362880832">
       <screen x="0" y="28" width="1366" height="740" />
     </state>
-    <state x="454" y="313" width="448" height="176" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.28.1366.740@0.28.1366.740" timestamp="1593353638536" />
-    <state x="0" y="28" width="618" height="740" key="find.popup" timestamp="1593271341151">
+    <state x="359" y="186" width="647" height="429" key="git4idea.merge.GitPullDialog/0.28.1366.740@0.28.1366.740" timestamp="1593362880832" />
+    <state x="371" y="298" width="613" height="206" key="git4idea.ui.GitStashDialog" timestamp="1593362871100">
       <screen x="0" y="28" width="1366" height="740" />
     </state>
-    <state x="0" y="28" width="618" height="740" key="find.popup/0.28.1366.740@0.28.1366.740" timestamp="1593271341151" />
-    <state x="359" y="186" width="637" height="435" key="git4idea.merge.GitPullDialog" timestamp="1593353607895">
+    <state x="371" y="298" width="613" height="206" key="git4idea.ui.GitStashDialog/0.28.1366.740@0.28.1366.740" timestamp="1593362871100" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1593456102044">
       <screen x="0" y="28" width="1366" height="740" />
     </state>
-    <state x="359" y="186" width="637" height="435" key="git4idea.merge.GitPullDialog/0.28.1366.740@0.28.1366.740" timestamp="1593353607895" />
-    <state x="347" y="175" width="672" height="677" key="run.anything.popup" timestamp="1593344127746">
-      <screen x="0" y="28" width="1366" height="740" />
-    </state>
-    <state x="347" y="174" key="run.anything.popup/0.27.1366.741@0.27.1366.741" timestamp="1592935226817" />
-    <state x="347" y="175" width="672" height="677" key="run.anything.popup/0.28.1366.740@0.28.1366.740" timestamp="1593344127746" />
-    <state x="346" y="90" width="672" height="678" key="search.everywhere.popup" timestamp="1593280812917">
-      <screen x="0" y="28" width="1366" height="740" />
-    </state>
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1593087234721" />
-    <state x="346" y="90" width="672" height="678" key="search.everywhere.popup/0.28.1366.740@0.28.1366.740" timestamp="1593280812917" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.28.1366.740@0.28.1366.740" timestamp="1593456102044" />
   </component>
 </project>

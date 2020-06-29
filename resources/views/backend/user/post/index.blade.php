@@ -70,20 +70,24 @@
                         @endcan
 
                         @can('edit post')
-                            <a class="btn btn-info btn-sm" href="{{ route('user.post.edit', $post->slug) }}">
-                                <i class="far fa-edit"></i>
-                            </a>
+                            @if(!$post->user->hasRole(['super', 'admin']) && Auth::id() == $post->user->id)
+                                <a class="btn btn-info btn-sm" href="{{ route('user.post.edit', $post->slug) }}">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                            @endif
                         @endcan
 
                         @can('delete post')
-                            <button onclick="deleteItem({{ $post->id }})" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash"></i>
-                                <form id="delete-form-{{ $post->id }}"
-                                      action="{{ route('user.post.destroy', $post->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                            </button>
+                            @if(!$post->user->hasRole(['super', 'admin']) && Auth::id() == $post->user->id)
+                                <button onclick="deleteItem({{ $post->id }})" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i>
+                                    <form id="delete-form-{{ $post->id }}"
+                                          action="{{ route('user.post.destroy', $post->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                </button>
+                            @endif
                         @endcan
                     </td>
                 </tr>

@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="row">
-                    @forelse($posts->take(3) as $key => $post)
+                    @forelse( $posts->take(3) as $key => $post )
                         @if(++$key == 1)
                             <!-- post -->
                                 <div class="col-md-12">
@@ -252,7 +252,7 @@
                     <div class="aside-widget">
                         <div class="tags-widget">
                             <ul>
-                                @forelse($post->tags as $tag)
+                                @forelse($tags as $tag)
                                     <li>
                                         <a href="#">
                                             {{ $tag->name }}

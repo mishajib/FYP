@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
@@ -35,6 +36,7 @@ class PostController extends Controller
         $data['posts'] = $data['category']->posts()->approved()->published()->latest()->paginate(4);
         $data['mostReadPost'] = Post::with('categories')->with('tags')->approved()->published()->orderBy('view_count', 'desc')->get();
         $data['categories'] = Category::latest()->paginate(4);
+        $data['tags'] = Tag::latest()->get();
         return view('frontend.category')->with($data);
     }
 

@@ -26,13 +26,13 @@ class TagRequest extends FormRequest
         switch ($this->method()) {
             case 'PUT':
                 $rules = [
-                    'name' => 'bail|required|string|min:4|unique:tags,id,:id'
+                    'name' => 'bail|required|string|unique:tags,id,:id'
                 ];
                 break;
 
             default:
                 $rules = [
-                    'name' => 'bail|required|string|min:4|unique:tags'
+                    'name' => 'bail|required|string|unique:tags'
                 ];
                 break;
         }

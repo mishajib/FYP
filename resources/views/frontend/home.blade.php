@@ -480,7 +480,7 @@
                     <div class="aside-widget">
                         <div class="tags-widget">
                             <ul>
-                                @forelse($post->tags as $tag)
+                                @forelse($tags as $tag)
                                     <li>
                                         <a href="#">
                                             {{ $tag->name }}

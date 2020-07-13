@@ -26,15 +26,15 @@ class CategoryRequest extends FormRequest
         switch ($this->method()) {
             case 'PUT':
                 $rules = [
-                    'name'                 => 'bail|required|string|unique:categories,id,:id',
-                    'category'              => 'nullable'
+                    'name' => 'bail|required|string|unique:categories,id,:id',
+                    'category' => 'nullable'
                 ];
                 break;
-        
+
             default:
                 $rules = [
-                    'name'                 => 'bail|required|string|unique:categories',
-                    'category'              => 'nullable'
+                    'name' => 'bail|required|string|unique:categories',
+                    'category' => 'nullable'
                 ];
                 break;
         }

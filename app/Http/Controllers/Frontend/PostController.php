@@ -12,21 +12,21 @@ class PostController extends Controller
 {
     public function index()
     {
-        $data['posts'] = Post::with('categories')->with('tags')->latest()->paginate(4);
+        $data['posts'] = Post::with('categories', 'tags')->latest()->paginate(4);
         return view('frontend.posts')->with($data);
     }
 
     public function details($slug)
     {
-        $data['post'] = Post::with('categories')->with('tags')->where('slug', $slug)->approved()->published()->first();
+        $data['post'] = Post::with('categories', 'tags')->where('slug', $slug)->approved()->published()->first();
         $blogKey = 'blog_' . $data['post']->id;
 
         if (!Session::has($blogKey)) {
             $data['post']->increment('view_count');
             Session::put($blogKey, 1);
         }
-        $data['mostReadPost'] = Post::approved()->published()->orderBy('view_count', 'desc')->get();
         $data['posts'] = Post::approved()->published()->latest()->get();
+        $data['mostReadPost'] = Post::approved()->published()->orderBy('view_count', 'desc')->get();
         return view('frontend.single-post')->with($data);
     }
 
@@ -34,8 +34,8 @@ class PostController extends Controller
     {
         $data['category'] = Category::where('slug', $slug)->first();
         $data['posts'] = $data['category']->posts()->approved()->published()->latest()->paginate(4);
-        $data['mostReadPost'] = Post::with('categories')->with('tags')->approved()->published()->orderBy('view_count', 'desc')->get();
-        $data['categories'] = Category::latest()->paginate(4);
+        $data['mostReadPost'] = Post::with('categories', 'tags')->approved()->published()->orderBy('view_count', 'desc')->get();
+        $data['categories'] = Category::with('posts')->latest()->paginate(4);
         $data['tags'] = Tag::latest()->get();
         return view('frontend.category')->with($data);
     }

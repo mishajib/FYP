@@ -15,18 +15,9 @@ use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('preventBackHistory');
-        $this->middleware([
-            'auth',
-            'role:user'
-        ]);
-    }
-
     public function index()
     {
-        return view('backend.profile');
+        return view('backend.user.profile');
     }
 
     public function updateProfile(Request $request)

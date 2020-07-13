@@ -17,9 +17,6 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('preventBackHistory');
-        $this->middleware('auth');
-        $this->middleware(['role:user']);
         $this->middleware('permission:access post')->only(['index', 'show']);
         $this->middleware('permission:create post')->only(['create', 'store']);
         $this->middleware('permission:edit post')->only(['edit', 'update']);

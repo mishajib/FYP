@@ -14,11 +14,6 @@ class CategoryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('preventBackHistory');
-        $this->middleware([
-            'auth',
-            'role:super|admin',
-        ]);
         $this->middleware('permission:access category')->only(['index', 'show']);
         $this->middleware('permission:create category')->only(['create', 'store']);
         $this->middleware('permission:edit category')->only(['edit', 'update']);
@@ -131,12 +126,17 @@ class CategoryController extends Controller
             $category = Category::findOrFail($id);
             $category->name = Str::ucfirst($request->name);
             $category->slug = Str::slug($request->name);
-            $category->parent_id = $request->category;
+            if ($request->category) {
+                $category->parent_id = $request->category;
+            } else {
+                $category->parent_id = null;
+            }
             if (Auth::user()->hasRole('super')) {
                 $category->is_approved = true;
             } else {
                 $category->is_approved = false;
             }
+            $category->save();
             notify()->success("Category successfully updated");
             return redirect(route('admin.categories.index'));
         } catch (\Exception $e) {

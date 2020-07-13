@@ -13,11 +13,6 @@ class PermissionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('preventBackHistory');
-        $this->middleware([
-            'auth',
-            'role:super|admin'
-        ]);
         $this->middleware('permission:access permission')->only(['index', 'show']);
         $this->middleware('permission:create permission')->only(['create', 'store']);
         $this->middleware('permission:edit permission')->only(['edit', 'update']);

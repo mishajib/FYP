@@ -33,6 +33,7 @@
                         <div class="form-group">
                             <label>Parent Category</label>
                             <select name="category" data-placeholder="Select parent category" class="form-control select2bs4" id="select" style="width: 100%;">
+                                <option value=""></option>
                                 @forelse($categories as $parent)
                                     <option {{ $category->parent_id == $parent->id ? 'selected':'' }}
                                             value="{{ $parent->id }}">{{ $parent->name }}</option>

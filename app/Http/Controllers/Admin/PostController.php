@@ -17,9 +17,6 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('preventBackHistory');
-        $this->middleware('auth');
-        $this->middleware(['role:super|admin']);
         $this->middleware('permission:access post')->only(['index', 'show']);
         $this->middleware('permission:create post')->only(['create', 'store']);
         $this->middleware('permission:edit post')->only(['edit', 'update']);
@@ -76,7 +73,7 @@ class PostController extends Controller
                     Storage::disk('public')->makeDirectory('post');
                 }
 
-                $postImage = Image::make($image)->resize(1600, 1066)->save();
+                $postImage = Image::make($image)->resize(1600, 1066)->stream();
 
                 Storage::disk('public')->put('post/' . $imagename, $postImage);
 
@@ -104,7 +101,7 @@ class PostController extends Controller
             $post->categories()->attach($request->categories);
             $post->tags()->attach($request->tags);
             notify()->success('Post successfully added');
-            return redirect(route('admin.post.index'));
+            return redirect(route('admin.post.show', $post->slug));
         } catch (\Exception $e) {
             notify()->error($e->getMessage());
             return back();
@@ -121,6 +118,10 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::where('slug', $id)->first();
+        if (empty($post)) {
+            notify()->error('No post found!!!');
+            return redirect(route('admin.post.index'));
+        }
         return view('backend.admin.post.show', compact('post'));
     }
 

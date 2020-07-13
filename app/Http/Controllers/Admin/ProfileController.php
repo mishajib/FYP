@@ -15,18 +15,9 @@ use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('preventBackHistory');
-        $this->middleware([
-            'auth',
-            'role:super|admin'
-        ]);
-    }
-
     public function index()
     {
-        return view('backend.profile');
+        return view('backend.admin.profile');
     }
 
     public function updateProfile(Request $request)
@@ -87,14 +78,14 @@ class ProfileController extends Controller
                     Storage::disk('public')->delete('profile/' . $user->image);
                 }
 
-                $profile = Image::make($image)->resize(260, 260)->save();
+                $profile = Image::make($image)->resize(260, 260)->stream();
                 Storage::disk('public')->put('profile/' . $imagename, $profile);
             } else {
                 $imagename = $user->image;
             }
             $user->image = $imagename;
             $user->save();
-            notify()->success('Image successfully updated...');
+            notify()->success('Image successfully updated');
             return back();
         } catch (\Exception $e) {
             notify()->error($e->getMessage());

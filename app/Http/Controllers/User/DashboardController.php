@@ -8,8 +8,6 @@ class DashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('preventBackHistory');
-        $this->middleware(['auth', 'role:user']);
         $this->middleware('permission:access dashboard');
     }
 

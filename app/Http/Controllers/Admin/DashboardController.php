@@ -12,9 +12,6 @@ class DashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('preventBackHistory');
-        $this->middleware('auth');
-        $this->middleware(['role:super|admin']);
         $this->middleware('permission:access dashboard');
     }
 

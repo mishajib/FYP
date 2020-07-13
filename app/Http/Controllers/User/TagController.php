@@ -13,11 +13,6 @@ class TagController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('preventBackHistory');
-        $this->middleware([
-            'auth',
-            'role:user'
-        ]);
         $this->middleware('permission:access tag')->only(['index', 'show']);
         $this->middleware('permission:create tag')->only(['create', 'store']);
         $this->middleware('permission:edit tag')->only(['edit', 'update']);

@@ -14,11 +14,6 @@ class RolePermissionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('preventBackHistory');
-        $this->middleware([
-            'auth',
-            'role:super|admin'
-        ]);
         $this->middleware('permission:access user role')->only('allUserRole');
         $this->middleware('permission:give user role')->only(['giveUserRolePage', 'giveUserRoleStore']);
         $this->middleware('permission:edit user role')->only(['editUserRolePage', 'updateUserRole']);

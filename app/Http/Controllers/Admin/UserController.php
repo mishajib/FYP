@@ -14,11 +14,6 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('preventBackHistory');
-        $this->middleware([
-            'auth',
-            'role:super|admin'
-        ]);
         $this->middleware('permission:access user')->only(['index', 'show']);
         $this->middleware('permission:create user')->only(['create', 'store']);
         $this->middleware('permission:edit user')->only(['edit', 'update']);

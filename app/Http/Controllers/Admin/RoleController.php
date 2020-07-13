@@ -12,11 +12,6 @@ class RoleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('preventBackHistory');
-        $this->middleware([
-            'auth',
-            'role:super|admin'
-        ]);
         $this->middleware('permission:access role')->only(['index', 'show']);
         $this->middleware('permission:create role')->only(['create', 'store']);
         $this->middleware('permission:edit role')->only(['edit', 'update']);

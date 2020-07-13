@@ -14,11 +14,6 @@ class CategoryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('preventBackHistory');
-        $this->middleware([
-            'auth',
-            'role:user',
-        ]);
         $this->middleware('permission:access category')->only(['index', 'show']);
         $this->middleware('permission:create category')->only(['create', 'store']);
         $this->middleware('permission:edit category')->only(['edit', 'update']);

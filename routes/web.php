@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::view('test', 'frontend.chat');
+
 # Admin Routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', 'role:super|admin']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');

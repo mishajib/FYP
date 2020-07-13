@@ -11,10 +11,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $data['categories'] = Category::with('children')->with('parent')->latest()->paginate(4);
-        $data['posts'] = Post::with('categories')->with('tags')->latest()->approved()->published()->get();
-        $data['recentPosts'] = Post::with('categories')->approved()->published()->latest()->take(6)->get();
-        $data['mostReadPost'] = Post::with('categories')->with('tags')->approved()->published()->orderBy('view_count', 'desc')->paginate(4);
+        $data['categories'] = Category::with('posts')->latest()->paginate(4);
+        $data['posts'] = Post::with('categories')->latest()->approved()->published()->get();
+        $data['recentPosts'] = $data['posts']->take(6);
+        $data['mostReadPost'] = Post::with('categories')->approved()->published()->orderBy('view_count', 'desc')->paginate(4);
         $data['tags'] = Tag::latest()->get();
         return view('frontend.home')->with($data);
     }

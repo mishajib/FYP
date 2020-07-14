@@ -1,15 +1,11 @@
 @extends("layouts.backend.app")
-
 @section("title", "Categories")
-
-@section("content")
-
 @section("content-header", "Categories")
 @section("from-breadcrumb", "Categories")
 @section("breadcrumb-url", route('admin.categories.index'))
 @section("to-breadcrumb", "Dashboard")
 
-
+@section("content")
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">
@@ -104,7 +100,11 @@
                     </td>
                 </tr>
             @empty
-                <p class="text-danger">No data found!!!</p>
+                <tr>
+                    <td colspan="9">
+                        <span class="text-danger">No data found!!!</span>
+                    </td>
+                </tr>
             @endforelse
             </tbody>
             <tfoot>

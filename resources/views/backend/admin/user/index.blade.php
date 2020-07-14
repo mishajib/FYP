@@ -1,17 +1,15 @@
 @extends("layouts.backend.app")
 
 @section("title", "Users")
-
-@section("content")
-
 @section("content-header", "Users")
 @section("from-breadcrumb", "Users")
 @section("breadcrumb-url", route('admin.user.index'))
 @section("to-breadcrumb", "Dashboard")
 
-<div class="container">
+@section("content")
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">

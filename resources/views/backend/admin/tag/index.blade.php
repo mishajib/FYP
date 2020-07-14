@@ -1,15 +1,12 @@
 @extends("layouts.backend.app")
 
 @section("title", "Tags")
-
-@section("content")
-
 @section("content-header", "Tags")
 @section("from-breadcrumb", "Tags")
 @section("breadcrumb-url", route('admin.tags.index'))
 @section("to-breadcrumb", "Dashboard")
 
-
+@section("content")
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">

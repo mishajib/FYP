@@ -49,19 +49,14 @@ class PermissionController extends Controller
     public function store(PermissionRequest $request)
     {
         $request->validated();
-        try {
-            $permission = new Permission();
-            $permission->name = Str::lower($request->name);
-            $permission->slug = Str::slug($request->name);
-            $permission->save();
-            $role = Role::findByName('super');
-            $role->givePermissionTo($request->name);
-            notify()->success('Permission successfully added...');
-            return back();
-        } catch (\Exception $e) {
-            notify()->error($e->getMessage());
-            return back();
-        }
+        $permission = new Permission();
+        $permission->name = Str::lower($request->name);
+        $permission->slug = Str::slug($request->name);
+        $permission->save();
+        $role = Role::findByName('super');
+        $role->givePermissionTo($request->name);
+        notify()->success('Permission successfully added...');
+        return back();
     }
 
     /**
@@ -72,13 +67,8 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        try {
-            $permission = Permission::where('slug', $id)->first();
-            return view('backend.admin.permission.show', compact('permission'));
-        } catch (\Exception $e) {
-            notify()->error('Permission not found by ID ' . $id);
-            return back();
-        }
+        $permission = Permission::where('slug', $id)->first();
+        return view('backend.admin.permission.show', compact('permission'));
     }
 
     /**
@@ -89,13 +79,8 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        try {
-            $permission = Permission::where('slug', $id)->first();
-            return view('backend.admin.permission.edit', compact('permission'));
-        } catch (\Exception $e) {
-            notify()->error('Permission not found by ID ' . $id);
-            return back();
-        }
+        $permission = Permission::where('slug', $id)->first();
+        return view('backend.admin.permission.edit', compact('permission'));
     }
 
     /**
@@ -108,19 +93,14 @@ class PermissionController extends Controller
     public function update(PermissionRequest $request, $id)
     {
         $request->validated();
-        try {
-            $permission = Permission::findOrFail($id);
-            $permission->name = Str::lower($request->name);
-            $permission->slug = Str::slug($request->name);
-            $role = Role::findByName('super');
-            $role->givePermissionTo(Permission::all());
-            $permission->save();
-            notify()->success('Permission successfully updated...');
-            return redirect(route('admin.permissions.index'));
-        } catch (\Exception $e) {
-            notify()->error($e->getMessage());
-            return back();
-        }
+        $permission = Permission::findOrFail($id);
+        $permission->name = Str::lower($request->name);
+        $permission->slug = Str::slug($request->name);
+        $role = Role::findByName('super');
+        $role->givePermissionTo(Permission::all());
+        $permission->save();
+        notify()->success('Permission successfully updated...');
+        return redirect(route('admin.permissions.index'));
     }
 
     /**
@@ -131,18 +111,13 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $permission = Permission::findOrFail($id);
-            if (count($permission->roles) or count($permission->users)) {
-                notify()->error("Permission can't be deleted! permission is associated with roles or users.");
-                return back();
-            } else {
-                $permission->delete();
-                toast('Permission deleted successfully', 'success');
-                return back();
-            }
-        } catch (\Exception $e) {
-            notify()->error($e->getMessage());
+        $permission = Permission::findOrFail($id);
+        if (count($permission->roles) or count($permission->users)) {
+            notify()->error("Permission can't be deleted! permission is associated with roles or users.");
+            return back();
+        } else {
+            $permission->delete();
+            toast('Permission deleted successfully', 'success');
             return back();
         }
     }
@@ -153,12 +128,11 @@ class PermissionController extends Controller
         if ($user->hasRole('super')) {
             notify()->error('Super Admin user permission can\'t be removed!!!');
             return back();
-        } else {
-            $permission = Permission::findOrFail($per_id);
-            $user->revokePermissionTo($permission);
-            notify()->success("Remove " . $permission->name. " permission from " . $user->name. "user.");
-            return back();
         }
+        $permission = Permission::findOrFail($per_id);
+        $user->revokePermissionTo($permission);
+        notify()->success("Remove " . $permission->name . " permission from " . $user->name . "user.");
+        return back();
     }
 
     public function removeRole($id, $per_id)
@@ -167,11 +141,10 @@ class PermissionController extends Controller
         if ($role->name == 'super') {
             notify()->error('Super Admin role permission can\'t be removed!!!');
             return back();
-        } else {
-            $permission = Permission::findOrFail($per_id);
-            $role->revokePermissionTo($permission);
-            notify()->success("Remove " . $permission->name. " permission from " . $role->name. "role.");
-            return back();
         }
+        $permission = Permission::findOrFail($per_id);
+        $role->revokePermissionTo($permission);
+        notify()->success("Remove " . $permission->name . " permission from " . $role->name . "role.");
+        return back();
     }
 }

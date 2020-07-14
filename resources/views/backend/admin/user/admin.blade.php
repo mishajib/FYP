@@ -2,14 +2,12 @@
 
 @section("title", "Users")
 
-@section("content")
-
 @section("content-header", "Users")
 @section("from-breadcrumb", "Users")
 @section("breadcrumb-url", route('admin.user.index'))
 @section("to-breadcrumb", "Dashboard")
 
-
+@section("content")
 <div class="card">
     <div class="card-header">
         <h3 class="card-title"><a class="btn btn-primary" href="{{ route('admin.user.create') }}">Add new user</a></h3>

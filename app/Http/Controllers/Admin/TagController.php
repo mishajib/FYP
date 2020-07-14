@@ -3,9 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Tag;
-use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
 use App\Http\Requests\TagRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
@@ -50,17 +47,12 @@ class TagController extends Controller
     public function store(TagRequest $request)
     {
         $request->validated();
-        try {
-            $tag = new Tag();
-            $tag->name = Str::lower($request->name);
-            $tag->slug = Str::slug($request->name);
-            $tag->save();
-            notify()->success('Tag successfully added...');
-            return redirect(route('admin.tags.index'));
-        } catch (Exception $e) {
-            notify()->error($e->getMessage());
-            return back();
-        }
+        $tag = new Tag();
+        $tag->name = Str::lower($request->name);
+        $tag->slug = Str::slug($request->name);
+        $tag->save();
+        notify()->success('Tag successfully added...');
+        return redirect(route('admin.tags.index'));
     }
 
     /**
@@ -71,13 +63,8 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        try {
-            $tag = Tag::where('slug', $id)->first();
-            return view('backend.admin.tag.show', compact('tag'));
-        } catch (ModelNotFoundException $e) {
-            notify()->error('Tag not found by ID ' . $id);
-            return back();
-        }
+        $tag = Tag::where('slug', $id)->with('posts')->first();
+        return view('backend.admin.tag.show', compact('tag'));
     }
 
     /**
@@ -88,13 +75,8 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        try {
-            $tag = Tag::where('slug', $id)->first();
-            return view('backend.admin.tag.edit', compact('tag'));
-        } catch (ModelNotFoundException $e) {
-            notify()->error('Tag not found by ID ' . $id);
-            return back();
-        }
+        $tag = Tag::where('slug', $id)->first();
+        return view('backend.admin.tag.edit', compact('tag'));
     }
 
     /**
@@ -102,22 +84,17 @@ class TagController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(TagRequest $request, $id)
     {
         $request->validated();
-        try {
-            $tag = Tag::findOrFail($id);
-            $tag->name = Str::lower($request->name);
-            $tag->slug = Str::slug($request->name);
-            $tag->save();
-            notify()->success('Tag successfully updated...');
-            return redirect(route('admin.tags.index'));
-        } catch (Exception $e) {
-            notify()->error($e->getMessage());
-            return back();
-        }
+        $tag = Tag::findOrFail($id);
+        $tag->name = Str::lower($request->name);
+        $tag->slug = Str::slug($request->name);
+        $tag->save();
+        notify()->success('Tag successfully updated...');
+        return redirect(route('admin.tags.index'));
     }
 
     /**
@@ -128,14 +105,10 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $tag = Tag::findOrFail($id);
-            $tag->delete();
-            notify()->success('Tag successfully deleted');
-            return back();
-        } catch (Exception $e) {
-            notify()->error($e->getMessage());
-        }
+        $tag = Tag::findOrFail($id);
+        $tag->delete();
+        notify()->success('Tag successfully deleted');
+        return back();
 
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use notify;
 use App\Models\Category;
@@ -57,23 +56,18 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $request->validated();
-        try {
-            $category = new Category();
-            $category->name = Str::ucfirst($request->name);
-            $category->slug = Str::slug($request->name);
-            $category->parent_id = $request->category;
-            if (Auth::user()->hasRole('super')) {
-                $category->is_approved = true;
-            } else {
-                $category->is_approved = false;
-            }
-            $category->save();
-            notify()->success("Category successfully added", "success");
-            return redirect(route('admin.categories.index'));
-        } catch (\Exception $e) {
-            notify()->error($e->getMessage());
-            return back();
+        $category = new Category();
+        $category->name = Str::ucfirst($request->name);
+        $category->slug = Str::slug($request->name);
+        $category->parent_id = $request->category;
+        if (Auth::user()->hasRole('super')) {
+            $category->is_approved = true;
+        } else {
+            $category->is_approved = false;
         }
+        $category->save();
+        notify()->success("Category successfully added", "success");
+        return redirect(route('admin.categories.index'));
     }
 
     /**
@@ -84,13 +78,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        try {
-            $category = Category::where('slug', $id)->first();
-            return view('backend.admin.category.show', compact('category'));
-        } catch (ModelNotFoundException $e) {
-            notify()->error('Category not found by ID ' . $id);
-            return back();
-        }
+        $category = Category::where('slug', $id)->with('posts')->first();
+        return view('backend.admin.category.show', compact('category'));
 
     }
 
@@ -102,14 +91,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        try {
-            $category = Category::where('slug', $id)->first();
-            $categories = Category::all();
-            return view('backend.admin.category.edit', compact('category', 'categories'));
-        } catch (\Exception $e) {
-            notify()->error('Category not found by ID ' . $id);
-            return back();
-        }
+        $category = Category::where('slug', $id)->first();
+        $categories = Category::all();
+        return view('backend.admin.category.edit', compact('category', 'categories'));
     }
 
     /**
@@ -122,27 +106,22 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         $request->validated();
-        try {
-            $category = Category::findOrFail($id);
-            $category->name = Str::ucfirst($request->name);
-            $category->slug = Str::slug($request->name);
-            if ($request->category) {
-                $category->parent_id = $request->category;
-            } else {
-                $category->parent_id = null;
-            }
-            if (Auth::user()->hasRole('super')) {
-                $category->is_approved = true;
-            } else {
-                $category->is_approved = false;
-            }
-            $category->save();
-            notify()->success("Category successfully updated");
-            return redirect(route('admin.categories.index'));
-        } catch (\Exception $e) {
-            notify()->error($e->getMessage());
-            return back();
+        $category = Category::findOrFail($id);
+        $category->name = Str::ucfirst($request->name);
+        $category->slug = Str::slug($request->name);
+        if ($request->category) {
+            $category->parent_id = $request->category;
+        } else {
+            $category->parent_id = null;
         }
+        if (Auth::user()->hasRole('super')) {
+            $category->is_approved = true;
+        } else {
+            $category->is_approved = false;
+        }
+        $category->save();
+        notify()->success("Category successfully updated");
+        return redirect(route('admin.categories.index'));
     }
 
     /**
@@ -153,31 +132,28 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $category = Category::findOrFail($id);
-            if (!empty($category->parent)) {
-                notify()->error("Can't delete parent category before delete the child category");
-            }
-            $category->delete();
-            notify()->success('Category successfully deleted...');
-        } catch (\Exception $e) {
-            notify()->error('Category not found by ID ' . $id);
+        $category = Category::findOrFail($id);
+        if (!empty($category->parent)) {
+            notify()->error("Can't delete parent category before delete the child category");
         }
-
+        $category->delete();
+        notify()->success('Category successfully deleted...');
         return back();
     }
 
 
-    //Pending Category Function
-    public function pendingPage()
+//Pending Category Function
+    public
+    function pendingPage()
     {
         $categories = Category::pending()->latest()->get();
         return view('backend.admin.category.pending', compact('categories'));
 
     }
 
-    //Category Approved Function
-    public function approved($id)
+//Category Approved Function
+    public
+    function approved($id)
     {
         $category = Category::find($id);
         if ($category->is_approved == false) {
@@ -191,8 +167,9 @@ class CategoryController extends Controller
         return back();
     }
 
-    //reverse the approval function
-    public function pending($id)
+//reverse the approval function
+    public
+    function pending($id)
     {
         $category = Category::findOrFail($id);
         if ($category->is_approved == true) {
@@ -206,16 +183,18 @@ class CategoryController extends Controller
         return back();
     }
 
-    //Active Menu Function
-    public function activePage()
+//Active Menu Function
+    public
+    function activePage()
     {
         $categories = Category::active()->latest()->get();
         return view('backend.admin.category.active', compact('categories'));
 
     }
 
-    //Category Approved Function
-    public function active($id)
+//Category Approved Function
+    public
+    function active($id)
     {
         $category = Category::findOrFail($id);
         if ($category->status == false) {
@@ -229,8 +208,9 @@ class CategoryController extends Controller
         return back();
     }
 
-    //reverse the approval function
-    public function deactive($id)
+//reverse the approval function
+    public
+    function deactive($id)
     {
         $category = Category::findOrFail($id);
         if ($category->status == true) {

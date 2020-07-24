@@ -9,17 +9,21 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
-
+ */
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::view('test', 'frontend.chat');
-//Route::get('chat', 'Frontend\ChatController@index')->name('chat.index');
-//Route::post('chat/store', 'Frontend\ChatController@store')->name('chat.store');
+// Route::view('test', 'frontend.chat');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('chat', 'Frontend\ChatController@index')->name('chat.index');
+    Route::post('chat/store', 'Frontend\ChatController@store')->name('chat.store');
+    Route::post('comment/{post}', 'Frontend\CommentController@store')->name('comment.store');
+});
+
 # Admin Routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', 'role:super|admin', 'preventBackHistory']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
@@ -139,6 +143,6 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () {
     Route::get('/tag/{slug}', 'PostController@postByTag')->name('tag.posts');
     Route::get('/posts', 'PostController@index')->name('posts');
     Route::get('/search', 'SearchController@search')->name('search');
-
+    Route::post('subscribe', 'HomeController@subscribe')->name('subscribe');
+    Route::get('contact', 'ContactController@index')->name('contact');
 });
-

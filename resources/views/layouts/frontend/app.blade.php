@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,13 +13,13 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}"/>
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}" />
 
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/font-awesome.min.css') }}">
 
     <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}"/>
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}" />
 
     <!-- Favicon-->
     <link rel="icon" href="{{ asset("assets/favicon.png") }}" type="image/x-icon">
@@ -32,34 +32,37 @@
     <![endif]-->
 
 </head>
+
 <body>
 
-<!-- Header -->
+    <!-- Header -->
     @include("layouts.frontend.partials.header");
-<!-- /Header -->
+    <!-- /Header -->
 
-<!-- section -->
+    <!-- section -->
     @yield("content")
-<!-- /section -->
+    <!-- /section -->
 
-<!-- Footer -->
+    <!-- Footer -->
     @include("layouts.frontend.partials.footer")
-<!-- /Footer -->
+    <!-- /Footer -->
 
-<!-- jQuery Plugins -->
-<script src="{{ asset('assets/frontend/js/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('assets/frontend/js/main.js') }}"></script>
-<script src="https://unpkg.com/jscroll@2.4.1/dist/jquery.jscroll.min.js"></script>
-<script>
-    $('ul.nav li.dropdown').hover(function() {
+    <!-- jQuery Plugins -->
+    <script src="{{ asset('assets/frontend/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
+    <script src="https://unpkg.com/jscroll@2.4.1/dist/jquery.jscroll.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    @include('sweetalert::alert')
+    <script>
+        $('ul.nav li.dropdown').hover(function() {
         $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
     }, function() {
         $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
     });
-</script>
-<script>
-    $('ul.pagination').hide();
+    </script>
+    <script>
+        $('ul.pagination').hide();
     $(function() {
         $('.post-scroll').jscroll({
             autoTrigger: true,
@@ -87,6 +90,7 @@
             }
         });
     });
-</script>
+    </script>
 </body>
+
 </html>

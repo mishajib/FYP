@@ -7,9 +7,6 @@
         <li class="nav-item d-none d-sm-inline-block">
             <a href="{{ route('frontend.home') }}" target="_blank" class="nav-link">Home</a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="" target="_blank" class="nav-link">Contact</a>
-        </li>
     </ul>
 
     <!-- SEARCH FORM -->

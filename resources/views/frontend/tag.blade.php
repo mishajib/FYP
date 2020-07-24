@@ -1,6 +1,6 @@
 @extends("layouts.frontend.app")
 
-@section("title", $category->name)
+@section("title", $tag->name)
 
 @section("page-header")
 <div class="page-header">
@@ -9,9 +9,9 @@
             <div class="col-md-10">
                 <ul class="page-header-breadcrumb">
                     <li><a href="{{ route('frontend.home') }}">Home</a></li>
-                    <li>{{ $category->name }}</li>
+                    <li>{{ $tag->name }}</li>
                 </ul>
-                <h1>{{ $category->name }}</h1>
+                <h1>{{ $tag->name }}</h1>
             </div>
         </div>
     </div>

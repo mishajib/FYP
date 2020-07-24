@@ -19,31 +19,34 @@ class PostController extends Controller
     public function details($slug)
     {
         $data['post'] = Post::with('categories', 'tags')->where('slug', $slug)->approved()->published()->first();
-        $blogKey = 'blog_' . $data['post']->id;
+        $blogKey      = 'blog_' . $data['post']->id;
 
         if (!Session::has($blogKey)) {
             $data['post']->increment('view_count');
             Session::put($blogKey, 1);
         }
-        $data['posts'] = Post::approved()->published()->latest()->get();
+        $data['posts']        = Post::approved()->published()->latest()->get();
         $data['mostReadPost'] = Post::approved()->published()->orderBy('view_count', 'desc')->get();
         return view('frontend.single-post')->with($data);
     }
 
     public function postByCategory($slug)
     {
-        $data['category'] = Category::where('slug', $slug)->first();
-        $data['posts'] = $data['category']->posts()->approved()->published()->latest()->paginate(4);
+        $data['category']     = Category::where('slug', $slug)->first();
+        $data['posts']        = $data['category']->posts()->approved()->published()->latest()->paginate(4);
         $data['mostReadPost'] = Post::with('categories', 'tags')->approved()->published()->orderBy('view_count', 'desc')->get();
-        $data['categories'] = Category::with('posts')->latest()->paginate(4);
-        $data['tags'] = Tag::latest()->get();
+        $data['categories']   = Category::with('posts')->latest()->paginate(4);
+        $data['tags']         = Tag::latest()->get();
         return view('frontend.category')->with($data);
     }
 
     public function postByTag($slug)
     {
-        $data['tag'] = Tag::where('slug', $slug)->first();
-        $data['posts'] = $data['tag']->posts()->approved()->published()->get();
-        return view('frontend.category')->with($data);
+        $data['tag']          = Tag::where('slug', $slug)->first();
+        $data['posts']        = $data['tag']->posts()->approved()->latest()->paginate(4);
+        $data['mostReadPost'] = Post::with('categories', 'tags')->approved()->published()->orderBy('view_count', 'desc')->get();
+        $data['categories']   = Category::with('posts')->latest()->paginate(4);
+        $data['tags']         = Tag::latest()->get();
+        return view('frontend.tag')->with($data);
     }
 }

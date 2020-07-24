@@ -20,7 +20,7 @@ class User extends Authenticatable
     public $timestamps = true;
 
     protected $fillable = [
-        'username', 'name', 'email', 'phone_number', 'password', 'slug', 'client_ip', 'machine_name'
+        'username', 'name', 'email', 'phone_number', 'password', 'slug', 'client_ip', 'machine_name',
     ];
 
     /**
@@ -41,7 +41,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
     public function posts()
     {
         return $this->hasMany(Post::class);
@@ -50,5 +49,10 @@ class User extends Authenticatable
     public function messages()
     {
         return $this->hasMany(Message::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

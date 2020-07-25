@@ -6,20 +6,23 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Help Desk | {{ config('app.name') }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('assets/backend/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/chat/style.css') }}">
 </head>
 
 <body>
+    @guest
+    <p class="text-center">You have to login first to chat. <a href="{{  route('login') }}">Login</a></p>
+    @else
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 my-5">
                 <div class="card">
                     <div class="card-header">
-                        <h1 class="card-title">
-                            Help Desk
+                        <h1 class="card-title text-center">
+                            HELP DESK
                         </h1>
                     </div>
                     <div class="card-body">
@@ -30,12 +33,12 @@
                                         @forelse($messages as $message)
                                         <div class="incoming_msg mt-4">
                                             <div class="incoming_msg_img">
-                                                <img src="{{ asset('storage/profile/'.$message->user->image) }}"
-                                                    alt="{{ $message->user->name }}">
+                                                <img src="{{ asset('storage/profile/'.@$message->user->image) }}"
+                                                    alt="{{ @$message->user->name }}">
 
                                             </div>
                                             <div class="received_msg">
-                                                <span>{{ $message->user->name }}</span>
+                                                <span>{{ @$message->user->name }}</span>
                                                 <div class="received_withd_msg">
                                                     <p>{{ $message->message }}</p>
                                                     <span class="time_date">
@@ -71,6 +74,7 @@
             </div>
         </div>
     </div>
+    @endguest
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

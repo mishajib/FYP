@@ -78,7 +78,7 @@ class ProfileController extends Controller
                     Storage::disk('public')->delete('profile/' . $user->image);
                 }
 
-                $profile = Image::make($image)->resize(260, 260)->save();
+                $profile = Image::make($image)->resize(260, 260)->stream();
                 Storage::disk('public')->put('profile/' . $imagename, $profile);
             } else {
                 $imagename = $user->image;

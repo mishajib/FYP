@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
-    public function __construct()
-    {
-//        $this->middleware('auth');
-    }
-
     public function index()
     {
         $messages = Message::all();
@@ -23,10 +18,10 @@ class ChatController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'message' =>  'bail|required|string',
+            'message' => 'bail|required|string',
         ]);
 
-        $message = new Message();
+        $message          = new Message();
         $message->user_id = Auth::user()->id;
         $message->message = $request->message;
         $message->save();

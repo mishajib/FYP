@@ -1,5 +1,4 @@
 <ul class="nav-menu nav navbar-nav">
-    {{-- <li><a href="#">News</a></li> --}}
     <li><a href="{{ route('frontend.posts') }}">Popular</a></li>
     @forelse($categories->where('is_approved', 1)->where('status', 1)->whereNull('parent_id') as $key => $category)
     <li class="cat-{{ ++$key }} dropdown">
@@ -24,7 +23,7 @@
         @endif
     </li>
     @empty
-    <li><span class="text-danger">{{ __('No data found!!!') }}</span></li>
+    <li><span class="text-danger">{{ __('No data found!') }}</span></li>
     @endforelse
 
 </ul>

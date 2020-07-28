@@ -145,4 +145,5 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () {
     Route::get('/search', 'SearchController@search')->name('search');
     Route::post('subscribe', 'HomeController@subscribe')->name('subscribe');
     Route::get('contact', 'ContactController@index')->name('contact');
+    Route::post('contact/us', 'ContactController@contactUs')->name('message.send');
 });

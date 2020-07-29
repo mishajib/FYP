@@ -57,7 +57,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         @if(!empty(Auth::user()->about))
-                            <p class="text-muted">{{ Auth::user()->about }}</p>
+                            <p class="text-muted text-justify">{{ Auth::user()->about }}</p>
                         @else
                             <p class="text-muted"><span class="text-danger">Not found!!!</span></p>
                         @endif

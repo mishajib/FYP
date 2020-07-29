@@ -19,20 +19,20 @@ class RolesTableSeeder extends Seeder
         Role::create(['name' => 'admin', 'slug' => 'admin']);
         $user = Role::create(['name' => 'user', 'slug' => 'user']);
         $user->givePermissionTo([
-                                    'access dashboard',
-                                    'access post',
-                                    'create post',
-                                    'edit post',
-                                    'delete post',
-                                    'publish post',
-                                    'unpublish post',
-                                    'access category',
-                                    'create category',
-                                    'edit category',
-                                    'access tag',
-                                    'create tag',
-                                    'edit tag',
-                                    'access comment',
-                                ]);
+            'access dashboard',
+            'access post',
+            'create post',
+            'edit post',
+            'delete post',
+            'publish post',
+            'unpublish post',
+            'access category',
+            'create category',
+            'edit category',
+            'access tag',
+            'create tag',
+            'edit tag',
+            'access comment',
+        ]);
     }
 }

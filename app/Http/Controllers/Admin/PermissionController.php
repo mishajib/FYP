@@ -55,7 +55,7 @@ class PermissionController extends Controller
         $permission->save();
         $role = Role::findByName('super');
         $role->givePermissionTo($request->name);
-        notify()->success('Permission successfully added...');
+        notify()->success('Permission successfully added');
         return back();
     }
 

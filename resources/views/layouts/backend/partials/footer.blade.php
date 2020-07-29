@@ -38,7 +38,8 @@
 <script src="{{ asset('assets/backend/plugins/moment/moment.min.js') }}"></script>
 <script src="{{ asset('assets/backend/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="{{ asset('assets/backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<script
+    src="{{ asset('assets/backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <!-- Summernote -->
 <script src="{{ asset('assets/backend/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <!-- Bootstrap Switch -->
@@ -61,11 +62,12 @@
     $(function () {
         $("#example1").DataTable();
     });
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Basic
         $('.dropify').dropify();
 
     });
+
     function restoreFunction(id) {
         const swalWithBootstrapButtons = Swal.mixin({
             buttonsStyling: true,
@@ -210,13 +212,15 @@
         allowClear: true,
     });
 
-    $("input[data-bootstrap-switch]").each(function(){
+    $("input[data-bootstrap-switch]").each(function () {
         $(this).bootstrapSwitch('state', $(this).prop('checked'));
     });
 
     $(function () {
         // Summernote
-        $('.textarea').summernote()
+        $('.textarea').summernote({
+            height: 300,
+        });
     })
 </script>
 <script type="text/javascript">

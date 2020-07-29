@@ -107,6 +107,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::put('post/{id}/approved', 'PostController@approved')->name('post.approved');
     Route::put('post/{id}/pending', 'PostController@pending')->name('post.pending');
     # End Post Route
+
+    #Comment Route
+    Route::get('comment/all', 'CommentController@index')->name('comment.index');
+    Route::delete('comment/{id}/destroy', 'CommentController@destroy')->name('comment.destroy');
+    # End Comment Route
 });
 # End Admin Routes
 
@@ -133,6 +138,9 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middl
     Route::put('profile-image-update', 'ProfileController@updateProfileImage')->name('profile.image.update');
     Route::put('password-update', 'ProfileController@updatePassword')->name('password.update');
     # End profile route
+
+    # All Comment Route
+    Route::get('comment/all', 'CommentController@index')->name('comment.index');
 
 });
 

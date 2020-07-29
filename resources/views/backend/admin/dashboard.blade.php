@@ -20,7 +20,7 @@
                         <p>Total Posts</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-bag"></i>
+                        <i class="fa fa-sticky-note"></i>
                     </div>
                     <a href="{{ route('admin.post.index') }}"
                        class="small-box-footer">More info <i
@@ -37,7 +37,7 @@
                         <p>Pending Posts</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
+                        <i class="fa fa-plane"></i>
                     </div>
                     <a href="{{ route('admin.post.pending.page') }}"
                        class="small-box-footer">More info <i
@@ -54,7 +54,7 @@
                         <p>User Registrations</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-person-add"></i>
+                        <i class="fa fa-users"></i>
                     </div>
                     <a href="{{ route('admin.user.index') }}"
                        class="small-box-footer">More info <i
@@ -71,7 +71,7 @@
                         <p>All Post Views</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
+                        <i class="fa fa-eye"></i>
                     </div>
                     <a href="{{ route('admin.post.index') }}"
                        class="small-box-footer">More info <i
@@ -92,7 +92,7 @@
                         <p>Categories</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-bag"></i>
+                        <i class="fa fa-list-alt"></i>
                     </div>
                     <a href="{{ route('admin.post.index') }}"
                        class="small-box-footer">More info <i
@@ -107,37 +107,7 @@
                         <p>Tags</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-bag"></i>
-                    </div>
-                    <a href="{{ route('admin.post.index') }}"
-                       class="small-box-footer">More info <i
-                            class="fas fa-arrow-circle-right"></i></a>
-                </div>
-
-                <!-- small box -->
-                <div class="small-box bg-gradient-indigo">
-                    <div class="inner">
-                        <h3>{{ $category_count }}</h3>
-
-                        <p>Categories</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-bag"></i>
-                    </div>
-                    <a href="{{ route('admin.post.index') }}"
-                       class="small-box-footer">More info <i
-                            class="fas fa-arrow-circle-right"></i></a>
-                </div>
-
-                <!-- small box -->
-                <div class="small-box bg-gradient-orange">
-                    <div class="inner">
-                        <h3>{{ rand(0, 100) }}</h3>
-
-                        <p>Subscribers</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-bag"></i>
+                        <i class="fa fa-tags"></i>
                     </div>
                     <a href="{{ route('admin.post.index') }}"
                        class="small-box-footer">More info <i

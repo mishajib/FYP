@@ -20,11 +20,8 @@
                         <p>Categories</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-bag"></i>
+                        <i class="fa fa-list-alt"></i>
                     </div>
-                    <a href="{{ route('admin.post.index') }}"
-                       class="small-box-footer">More info <i
-                            class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-6">
@@ -36,11 +33,8 @@
                         <p>Total Posts</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-bag"></i>
+                        <i class="fa fa-sticky-note"></i>
                     </div>
-                    <a href="{{ route('admin.post.index') }}"
-                       class="small-box-footer">More info <i
-                            class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-6">
@@ -52,11 +46,8 @@
                         <p>User Registrations</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-person-add"></i>
+                        <i class="fa fa-users"></i>
                     </div>
-                    <a href="{{ route('admin.user.index') }}"
-                       class="small-box-footer">More info <i
-                            class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -69,11 +60,8 @@
                         <p>All Post Views</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
+                        <i class="fa fa-eye"></i>
                     </div>
-                    <a href="{{ route('admin.post.index') }}"
-                       class="small-box-footer">More info <i
-                            class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -91,11 +79,8 @@
                         <p>Tags</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-bag"></i>
+                        <i class="fa fa-tags"></i>
                     </div>
-                    <a href="{{ route('admin.post.index') }}"
-                       class="small-box-footer">More info <i
-                            class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 

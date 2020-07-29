@@ -8,7 +8,7 @@
 @section("to-breadcrumb", "Dashboard")
 
 @section("content")
-    <div class="container">
+    <div class="container-fluid">
         <form role="form" action="{{ route('user.post.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row clearfix">
@@ -100,8 +100,7 @@
                             </h1>
                         </div>
                         <div class="card-body">
-                            <textarea name="body" class="textarea" placeholder="Place some text here"
-                                      style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                            <textarea name="body" class="textarea">
                                 {{ old('body') }}
                             </textarea>
                         </div>

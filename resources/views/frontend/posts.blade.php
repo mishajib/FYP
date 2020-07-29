@@ -19,8 +19,11 @@
                     @forelse($posts as $post)
                         <div class="col-md-6">
                             <div class="post post-thumb">
-                                <a class="post-img" href="{{ route('frontend.post.details', $post->slug) }}">
-                                    <img src="{{ asset('storage/post/'.$post->image) }}" alt="">
+                                <a class="post-img"
+                                   href="{{ route('frontend.post.details', $post->slug) }}">
+                                    <img
+                                        src="{{ asset('storage/post/'.$post->image) }}"
+                                        alt="">
                                 </a>
                                 <div class="post-body">
                                     <div class="post-meta">
@@ -34,7 +37,8 @@
                                             <br><br>
 
                                         @empty
-                                            <a href="javascript:void(0)" class="post-category">
+                                            <a href="javascript:void(0)"
+                                               class="post-category">
                                             <span class="text-danger">
                                                 {{ __("No category found!!!") }}
                                             </span>

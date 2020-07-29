@@ -83,7 +83,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         try {
-            $category = Category::where('slug', $id)->first();
+            $category = Category::where('slug', $id)->with('posts')->first();
             return view('backend.user.category.show', compact('category'));
         } catch (ModelNotFoundException $e) {
             notify()->error('Category not found by ID ' . $id);
@@ -101,7 +101,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         try {
-            $category = Category::where('slug', $id)->first();
+            $category   = Category::where('slug', $id)->first();
             $categories = Category::all();
             return view('backend.user.category.edit', compact('category', 'categories'));
         } catch (\Exception $e) {
@@ -120,11 +120,12 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         $request->validated();
-        $category = Category::findOrFail($id);
-        $category->name = $request->name;
-        $category->slug = Str::slug($request->name);
-        $category->parent_id = $request->category;
+        $category              = Category::findOrFail($id);
+        $category->name        = $request->name;
+        $category->slug        = Str::slug($request->name);
+        $category->parent_id   = $request->category;
         $category->is_approved = false;
+        $category->save();
         notify()->success("Category successfully updated");
         return redirect(route('user.categories.index'));
     }

@@ -28,27 +28,33 @@
                 <div class="col-md-12 col-md-offset-1">
                     <div class="section-row">
                         <h3>Send A Message</h3>
-                        <form action="{{ route('frontend.message.send') }}" method="POST">
+                        <form action="{{ route('frontend.message.send') }}"
+                              method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <span>Email</span>
-                                        <input class="input" required type="email" name="email">
+                                        <input class="input" required
+                                               type="email" name="email">
                                     </div>
                                 </div>
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <span>Subject</span>
-                                        <input class="input" required type="text" name="subject">
+                                        <input class="input" required
+                                               type="text" name="subject">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <textarea class="input" required name="message"
+                                        <textarea class="input" required
+                                                  name="message"
                                                   placeholder="Message"></textarea>
                                     </div>
-                                    <button type="submit" class="primary-button">Submit</button>
+                                    <button type="submit"
+                                            class="primary-button">Submit
+                                    </button>
                                 </div>
                             </div>
                         </form>

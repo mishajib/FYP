@@ -2,7 +2,8 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <img src="{{ asset('storage/profile/' . Auth::user()->image) }}" class="img-circle elevation-2"
+            <img src="{{ asset('storage/profile/' . Auth::user()->image) }}"
+                 class="img-circle elevation-2"
                  alt="{{ Auth::user()->username }}">
         </div>
         <div class="info">
@@ -15,7 +16,8 @@
     <!-- Sidebar Menu -->
     @hasanyrole('super|admin')
     <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview"
+            role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
             <li class="nav-item">
@@ -96,7 +98,8 @@
 
             @can('access tag')
                 <li class="nav-item has-treeview {{ Request::is('admin/tags*') ? 'menu-open':'' }}">
-                    <a href="#" class="nav-link {{ Request::is('admin/tags*') ? 'active':'' }}">
+                    <a href="#"
+                       class="nav-link {{ Request::is('admin/tags*') ? 'active':'' }}">
                         <i class="nav-icon fas fa-tags"></i>
                         <p>
                             Tags
@@ -134,7 +137,8 @@
 
             @can('access post')
                 <li class="nav-item has-treeview {{ Request::is('admin/post*') ? 'menu-open':'' }}">
-                    <a href="#" class="nav-link {{ Request::is('admin/post*') ? 'active':'' }}">
+                    <a href="#"
+                       class="nav-link {{ Request::is('admin/post*') ? 'active':'' }}">
                         <i class="nav-icon fa fa-file-alt"></i>
                         <p>
                             Post
@@ -184,7 +188,8 @@
 
             @can('access comment')
                 <li class="nav-item">
-                    <a href="{{ route('admin.comment.index') }}" class="nav-link {{ Request::is('admin/comment/all') ?
+                    <a href="{{ route('admin.comment.index') }}"
+                       class="nav-link {{ Request::is('admin/comment/all') ?
                     'active':'' }}">
                         <i class="nav-icon fas fa-comments"></i>
                         <p>
@@ -196,7 +201,8 @@
 
             @can('access user')
                 <li class="nav-item has-treeview {{ Request::is('admin/user*') ? 'menu-open':'' }}">
-                    <a href="#" class="nav-link {{ Request::is('admin/user*') ? 'active':'' }}">
+                    <a href="#"
+                       class="nav-link {{ Request::is('admin/user*') ? 'active':'' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Users
@@ -440,12 +446,14 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('login') }}" class="nav-link" onclick="event.preventDefault();logoutFunction();">
+                <a href="{{ route('login') }}" class="nav-link"
+                   onclick="event.preventDefault();logoutFunction();">
                     <i class="nav-icon fas fa-sign-out-alt"></i>
                     <p>
                         {{ __('Logout') }}
                     </p>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    <form id="logout-form" action="{{ route('logout') }}"
+                          method="POST">
                         @csrf
                     </form>
                 </a>
@@ -456,7 +464,8 @@
 
     @hasrole('user')
     <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview"
+            role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
             <li class="nav-item {{ Request::is('user/dashboard') ? 'menu-open':'' }}">
@@ -511,7 +520,8 @@
 
             @can('access tag')
                 <li class="nav-item has-treeview {{ Request::is('user/tags*') ? 'menu-open':'' }}">
-                    <a href="#" class="nav-link {{ Request::is('user/tags*') ? 'active':'' }}">
+                    <a href="#"
+                       class="nav-link {{ Request::is('user/tags*') ? 'active':'' }}">
                         <i class="nav-icon fas fa-tags"></i>
                         <p>
                             Tags
@@ -549,7 +559,8 @@
 
             @can('access post')
                 <li class="nav-item has-treeview {{ Request::is('user/post*') ? 'menu-open':'' }}">
-                    <a href="#" class="nav-link {{ Request::is('user/post*') ? 'active':'' }}">
+                    <a href="#"
+                       class="nav-link {{ Request::is('user/post*') ? 'active':'' }}">
                         <i class="nav-icon fa fa-file-alt"></i>
                         <p>
                             Post
@@ -622,12 +633,14 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('login') }}" class="nav-link" onclick="event.preventDefault();logoutFunction();">
+                <a href="{{ route('login') }}" class="nav-link"
+                   onclick="event.preventDefault();logoutFunction();">
                     <i class="nav-icon fas fa-sign-out-alt"></i>
                     <p>
                         {{ __('Logout') }}
                     </p>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    <form id="logout-form" action="{{ route('logout') }}"
+                          method="POST">
                         @csrf
                     </form>
                 </a>

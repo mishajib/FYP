@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->string("slug");
             $table->boolean("status")->default(false);
             $table->boolean("is_approved")->default(false);
+            $table->boolean('is_default')->default(false);
             $table->timestamps();
         });
     }

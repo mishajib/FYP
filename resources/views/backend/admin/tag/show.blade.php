@@ -13,7 +13,7 @@
         </div>
         <div class="card-body">
             <h1 class="text-center">ALL POST</h1>
-            <table class="table">
+            <table id="datatable" class="table">
                 <thead class="thead-dark">
                 <tr>
                     <th>#</th>
@@ -32,21 +32,24 @@
                     <tr>
                         <td>{{ ++$key }}</td>
                         <td>
-                            <img class="img-responsive img-size-64" src="{{ asset('storage/post/'.$post->image) }}"
+                            <img class="img-responsive img-size-64"
+                                 src="{{ asset('storage/post/'.$post->image) }}"
                                  alt="{{ $post->title }}">
                         </td>
                         <td>{{ Str::limit($post->title, '15') }}</td>
                         <td>{{ $post->user->name }}</td>
                         <td>
                             @if($post->status == true)
-                                <span class="badge badge-success">Published</span>
+                                <span
+                                    class="badge badge-success">Published</span>
                             @else
                                 <span class="badge badge-danger">Pending</span>
                             @endif
                         </td>
                         <td>
                             @if($post->is_approved == true)
-                                <span class="badge badge-success">Approved</span>
+                                <span
+                                    class="badge badge-success">Approved</span>
                             @else
                                 <span class="badge badge-danger">Pending</span>
                             @endif
@@ -56,13 +59,15 @@
                         <td>
                             @can('unpublish post')
                                 @if($post->is_approved == true)
-                                    <button type="button" class="btn btn-danger btn-sm"
+                                    <button type="button"
+                                            class="btn btn-danger btn-sm"
                                             onclick="pendingItem({{ $post->id }})">
                                         <i class="fa fa-check"></i>
                                     </button>
-                                    <form action="{{ route('admin.post.pending', $post->id) }}"
-                                          id="pending-form-{{ $post->id }}"
-                                          style="display: none;" method="POST">
+                                    <form
+                                        action="{{ route('admin.post.pending', $post->id) }}"
+                                        id="pending-form-{{ $post->id }}"
+                                        style="display: none;" method="POST">
                                         @csrf
                                         @method('PUT')
                                     </form>
@@ -70,22 +75,26 @@
                             @endcan
 
                             @can('access post')
-                                <a class="btn btn-dark btn-sm" href="{{ route('admin.post.show', $post->slug) }}">
+                                <a class="btn btn-dark btn-sm"
+                                   href="{{ route('admin.post.show', $post->slug) }}">
                                     <i class="fas fa-eye"></i>
                                 </a>
                             @endcan
 
                             @can('edit post')
-                                <a class="btn btn-info btn-sm" href="{{ route('admin.post.edit', $post->slug) }}">
+                                <a class="btn btn-info btn-sm"
+                                   href="{{ route('admin.post.edit', $post->slug) }}">
                                     <i class="far fa-edit"></i>
                                 </a>
                             @endcan
 
                             @can('delete post')
-                                <button onclick="deleteItem({{ $post->id }})" class="btn btn-danger btn-sm">
+                                <button onclick="deleteItem({{ $post->id }})"
+                                        class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash"></i>
                                     <form id="delete-form-{{ $post->id }}"
-                                          action="{{ route('admin.post.destroy', $post->id) }}" method="POST">
+                                          action="{{ route('admin.post.destroy', $post->id) }}"
+                                          method="POST">
                                         @csrf
                                         @method('DELETE')
                                     </form>
@@ -94,7 +103,11 @@
                         </td>
                     </tr>
                 @empty
-                    <p class="text-danger">No data found!!!</p>
+                    <tr>
+                        <td class="text-center" colspan="9">
+                            <span class="text-danger h3">No data found!</span>
+                        </td>
+                    </tr>
                 @endforelse
                 </tbody>
             </table>

@@ -208,7 +208,7 @@
                     </div>
                     <div class="category-widget">
                         <ul class="category-scroll">
-                            @forelse($categories->where('is_approved', 1)->where('status', 1) as $ckey => $category)
+                            @forelse($categories->where('is_approved', 1) as $ckey => $category)
                             <li>
                                 <a href="{{ route('frontend.category.posts', $category->slug) }}"
                                     class="cat-{{ ++$ckey }}">

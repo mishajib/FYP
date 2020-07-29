@@ -14,7 +14,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();
+Auth::routes(['verify' => false]);
 
 // Route::view('test', 'frontend.chat');
 
@@ -115,7 +115,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 });
 # End Admin Routes
 
-Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middleware' => ['auth', 'role:user']], function () {
+Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middleware' => ['auth', 'role:user', 'preventBackHistory']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
     # Category Route
@@ -133,7 +133,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middl
     # End Tag Route
 
     # Profile route
-    Route::get('profile', 'ProfileController@index')->name("profile.index");
+    Route::get('profile', 'ProfileController@index')->name("profile.index")
+         ->middleware('password.confirm');
     Route::put('profile-update', 'ProfileController@updateProfile')->name('profile.update');
     Route::put('profile-image-update', 'ProfileController@updateProfileImage')->name('profile.image.update');
     Route::put('password-update', 'ProfileController@updatePassword')->name('password.update');

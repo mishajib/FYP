@@ -46,6 +46,13 @@
                                     <a href="{{ route('frontend.post.details', $post->slug) }}">
                                         {{ $post->title }}
                                     </a>
+                                    <p style="color: #fff; margin-top: 10px;
+                                    font-size: 12px;"
+                                       class="text-justify">
+                                        {{
+                                            Str::words(strip_tags($post->body), 15)
+                                        }}
+                                    </p>
                                 </h3>
                             </div>
                         </div>

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => false]);
 
-// Route::view('test', 'frontend.chat');
+//Route::view('test', 'emails.subscription');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('chat', 'Frontend\ChatController@index')->name('chat.index');
@@ -108,10 +108,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::put('post/{id}/pending', 'PostController@pending')->name('post.pending');
     # End Post Route
 
-    #Comment Route
+    # Comment Route
     Route::get('comment/all', 'CommentController@index')->name('comment.index');
     Route::delete('comment/{id}/destroy', 'CommentController@destroy')->name('comment.destroy');
     # End Comment Route
+
+    # Subscriber Route
+    Route::get('subscriber/all', 'SubscriberController@index')->name('subscriber.all');
+    Route::delete('subscriber/{id}/destroy', 'SubscriberController@destroy')->name('subscriber.destroy');
+    # End Subscriber Route
 });
 # End Admin Routes
 

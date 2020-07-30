@@ -49,7 +49,7 @@
                     <div class="section-row sticky-container">
                         <div class="main-post">
                             <h3>{{ $post->title }}</h3>
-                            {!! html_entity_decode($post->body) !!}
+                            {!! $post->body !!}
                         </div>
                     </div>
 

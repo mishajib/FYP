@@ -199,6 +199,20 @@
                 </li>
             @endcan
 
+
+            @can('access subscriber')
+                <li class="nav-item">
+                    <a href="{{ route('admin.subscriber.all') }}"
+                       class="nav-link {{ Request::is('admin/subscriber/all') ?
+                    'active':'' }}">
+                        <i class="nav-icon fas fa-check"></i>
+                        <p>
+                            Subscribers
+                        </p>
+                    </a>
+                </li>
+            @endcan
+
             @can('access user')
                 <li class="nav-item has-treeview {{ Request::is('admin/user*') ? 'menu-open':'' }}">
                     <a href="#"

@@ -27,7 +27,8 @@
                     <tr>
                         <td>{{ ++$key }}</td>
                         <td><a target="_blank"
-                               href="{{ route('frontend.post.details', $comment->post->slug) }}"
+                               href="{{ route('frontend.post.details',
+                               $comment->post->slug ?? '') }}"
                                class="btn
                                     btn-link">{{
                                     @$comment->post->title

@@ -52,17 +52,17 @@ class UserController extends Controller
     {
         $request->validated();
         try {
-            $user = new User();
-            $user->name = $request->name;
-            $user->username = $request->username;
-            $user->email = $request->email;
+            $user               = new User();
+            $user->name         = $request->name;
+            $user->username     = $request->username;
+            $user->email        = $request->email;
             $user->phone_number = $request->mobile;
-            $user->slug = Str::slug($request->name);
-            $user->password = Hash::make("password"); // password
-            $user->client_ip = $request->ip();
+            $user->slug         = Str::slug($request->name);
+            $user->password     = Hash::make("password"); // password
+            $user->client_ip    = $request->ip();
             $user->machine_name = gethostname();
-            $user->created_by = Auth::user()->username;
-            $user->updated_by = Auth::user()->username;
+            $user->created_by   = Auth::user()->username;
+            $user->updated_by   = Auth::user()->username;
             $user->save();
             notify()->success('User successfully added...');
             return redirect(route('admin.user.index'));
@@ -115,13 +115,13 @@ class UserController extends Controller
     {
         $request->validated();
         try {
-            $user = User::findOrFail($id);
-            $user->name = $request->name;
-            $user->username = $request->username;
-            $user->email = $request->email;
+            $user               = User::findOrFail($id);
+            $user->name         = $request->name;
+            $user->username     = $request->username;
+            $user->email        = $request->email;
             $user->phone_number = $request->mobile;
-            $user->slug = Str::slug($request->name);
-            $user->updated_by = Auth::user()->username;
+            $user->slug         = Str::slug($request->name);
+            $user->updated_by   = Auth::user()->username;
             $user->save();
             notify()->success('User successfully updated...');
             return redirect(route('admin.user.index'));
@@ -148,7 +148,7 @@ class UserController extends Controller
                 $user->deleted_by = Auth::user()->username;
                 $user->save();
                 $user->delete();
-                notify()->success('User successfully deleted...');
+                notify()->success('User successfully deleted');
                 return back();
             }
         } catch (\Exception $e) {
@@ -157,7 +157,8 @@ class UserController extends Controller
 
     }
 
-    public function adminUser() {
+    public function adminUser()
+    {
         $users = User::with('roles')->role(['super', 'admin'])->latest()->get();
         return view('backend.admin.user.admin', compact('users'));
     }

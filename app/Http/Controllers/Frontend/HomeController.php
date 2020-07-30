@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Subscription;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Subscriber;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -24,12 +26,17 @@ class HomeController extends Controller
     public function subscribe(Request $request)
     {
         $request->validate([
-            'email' => ['bail', 'required', 'string', 'email', 'unique:subscribers,email'],
-        ]);
+                               'email' => ['bail', 'required', 'string', 'email', 'unique:subscribers,email'],
+                           ]);
 
         $subscribe        = new Subscriber();
         $subscribe->email = $request->email;
         $subscribe->save();
+
+        $posts = Post::latest()->take(4)->get();
+        if ($posts->count() > 0) {
+            Mail::to($request->email)->send(new Subscription($posts));
+        }
 
         return back()->with('toast_success', 'Subsciption successful');
     }

@@ -10,13 +10,8 @@
     <title>@yield("title", "Enter site title here")
         - {{ config("app.name") }}</title>
 
-    <!-- Google font -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600"
-        rel="stylesheet">
-
     <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet"
+    <link rel="stylesheet"
           href="{{ asset('assets/frontend/css/bootstrap.min.css') }}"/>
 
     <!-- Font Awesome Icon -->

@@ -33,8 +33,7 @@ class PostController extends Controller
     public function postByCategory($slug)
     {
         $data['category']     = Category::where('slug', $slug)->first();
-        $data['posts']        = $data['category']->posts()->approved()
-                                                 ->published()->get();
+        $data['posts']        = $data['category']->posts()->approved()->published()->paginate(4);
         $data['mostReadPost'] = Post::with('categories', 'tags')->approved()->published()->orderBy('view_count', 'desc')->get();
         $data['categories']   = Category::with('posts')->latest()->paginate(4);
         $data['tags']         = Tag::latest()->get();
@@ -44,7 +43,7 @@ class PostController extends Controller
     public function postByTag($slug)
     {
         $data['tag']          = Tag::where('slug', $slug)->first();
-        $data['posts']        = $data['tag']->posts()->approved()->published()->get();
+        $data['posts']        = $data['tag']->posts()->approved()->published()->paginate(4);
         $data['mostReadPost'] = Post::with('categories', 'tags')->approved()->published()->orderBy('view_count', 'desc')->get();
         $data['categories']   = Category::with('posts')->latest()->paginate(4);
         $data['tags']         = Tag::latest()->get();

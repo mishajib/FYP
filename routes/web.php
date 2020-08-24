@@ -14,7 +14,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Auth::routes(['verify' => false]);
+Auth::routes();
 
 //Route::view('test', 'emails.subscription');
 

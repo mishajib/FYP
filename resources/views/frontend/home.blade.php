@@ -16,8 +16,8 @@
                             <a class="post-img"
                                href="{{ route('frontend.post.details', $post->slug) }}">
                                 <img
-                                    src="{{ asset('storage/post/'.$post->image) }}"
-                                    alt="{{ $post->title }}">
+                                        src="{{ asset('storage/post/'.$post->image) }}"
+                                        alt="{{ $post->title }}">
                             </a>
                             <div class="post-body">
                                 <div class="post-meta">
@@ -59,7 +59,7 @@
                     </div>
                 @empty
                     <h2><span
-                            class="text-danger">{{ __('No post found!!!') }}</span>
+                                class="text-danger">{{ __('No post found!!!') }}</span>
                     </h2>
             @endforelse
             <!-- /post -->
@@ -82,8 +82,8 @@
                                 <a class="post-img"
                                    href="{{ route('frontend.post.details', $post->slug) }}">
                                     <img
-                                        src="{{ asset('storage/post/'.$post->image) }}"
-                                        alt="{{ $post->title }}">
+                                            src="{{ asset('storage/post/'.$post->image) }}"
+                                            alt="{{ $post->title }}">
                                 </a>
                                 <div class="post-body">
                                     <div class="post-meta">
@@ -142,8 +142,8 @@
                                         <a class="post-img"
                                            href="{{ route('frontend.post.details', $post->slug) }}">
                                             <img
-                                                src="{{ asset('storage/post/'.$post->image) }}"
-                                                alt="{{ $post->title }}">
+                                                    src="{{ asset('storage/post/'.$post->image) }}"
+                                                    alt="{{ $post->title }}">
                                         </a>
                                         <div class="post-body">
                                             <div class="post-meta">
@@ -180,8 +180,8 @@
                                         <a class="post-img"
                                            href="{{ route('frontend.post.details', $post->slug) }}">
                                             <img
-                                                src="{{ asset('storage/post/'.$post->image) }}"
-                                                alt="{{ $post->title }}">
+                                                    src="{{ asset('storage/post/'.$post->image) }}"
+                                                    alt="{{ $post->title }}">
                                         </a>
                                         <div class="post-body">
                                             <div class="post-meta">
@@ -247,8 +247,8 @@
                                 <a class="post-img"
                                    href="{{ route('frontend.post.details', $post->slug) }}">
                                     <img
-                                        src="{{ asset('storage/post/'.$post->image) }}"
-                                        alt="{{ $post->title }}">
+                                            src="{{ asset('storage/post/'.$post->image) }}"
+                                            alt="{{ $post->title }}">
                                 </a>
                                 <div class="post-body">
                                     <h3 class="post-title">
@@ -277,8 +277,8 @@
                             <div class="post post-thumb">
                                 <a class="post-img" href="#">
                                     <img
-                                        src="{{ asset('storage/post/'.$post->image) }}"
-                                        alt="{{ $post->title }}">
+                                            src="{{ asset('storage/post/'.$post->image) }}"
+                                            alt="{{ $post->title }}">
                                 </a>
                                 <div class="post-body">
                                     <div class="post-meta">
@@ -357,8 +357,8 @@
                             <a class="post-img"
                                href="{{ route('frontend.post.details', $post->slug) }}">
                                 <img
-                                    src="{{ asset('storage/post/'.$post->image) }}"
-                                    alt="{{ $post->title }}">
+                                        src="{{ asset('storage/post/'.$post->image) }}"
+                                        alt="{{ $post->title }}">
                             </a>
                             <div class="post-body">
                                 <div class="post-meta">
@@ -427,8 +427,8 @@
                                         <a class="post-img"
                                            href="{{ route('frontend.post.details', $post->slug) }}">
                                             <img
-                                                src="{{ asset('storage/post/'.$post->image) }}"
-                                                alt="{{ $post->title }}">
+                                                    src="{{ asset('storage/post/'.$post->image) }}"
+                                                    alt="{{ $post->title }}">
                                         </a>
                                         <div class="post-body">
                                             <div class="post-meta">

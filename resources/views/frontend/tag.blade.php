@@ -174,8 +174,10 @@
                                 {{ __("No post found!!!") }}
                             </span>
                                 </h2>
-                        @endforelse
+                            @endforelse
                         <!-- /post -->
+
+                            {{ $posts->links() }}
                         </div>
                     </div>
                 </div>

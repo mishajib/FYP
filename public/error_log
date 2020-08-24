@@ -1,0 +1,5 @@
+[30-Jul-2020 18:55:29 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 6822401 bytes) in /home2/mishajib/fyp2.mishajib.com/vendor/intervention/image/src/Intervention/Image/Gd/Commands/ResizeCommand.php on line 58
+[31-Jul-2020 05:29:32 UTC] PHP Fatal error:  Interface 'JsonSerializable' not found in /home2/mishajib/fyp2.mishajib.com/vendor/laravel/framework/src/Illuminate/Support/Enumerable.php on line 11
+[31-Jul-2020 05:29:36 UTC] PHP Fatal error:  Interface 'JsonSerializable' not found in /home2/mishajib/fyp2.mishajib.com/vendor/laravel/framework/src/Illuminate/Support/Enumerable.php on line 11
+[31-Jul-2020 05:29:38 UTC] PHP Fatal error:  Interface 'JsonSerializable' not found in /home2/mishajib/fyp2.mishajib.com/vendor/laravel/framework/src/Illuminate/Support/Enumerable.php on line 11
+[31-Jul-2020 05:32:46 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 6822401 bytes) in /home2/mishajib/fyp2.mishajib.com/vendor/intervention/image/src/Intervention/Image/Gd/Commands/ResizeCommand.php on line 58

@@ -7,8 +7,8 @@
                 <div class="footer-widget">
                     <div class="footer-logo">
                         <a href="{{ route('frontend.home') }}" class="logo"><img
-                                src="{{ asset('assets/frontend/img/logo.png') }}"
-                                alt=""></a>
+                                    src="{{ asset('assets/frontend/img/logo.png') }}"
+                                    alt=""></a>
                     </div>
                     <div class="footer-copyright">
                         <span>&copy;
@@ -19,33 +19,6 @@
 
             <div class="col-md-4">
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="footer-widget">
-                            <h3 class="footer-title">About Us</h3>
-                            <ul class="footer-links">
-                                <li><a href="#">About Us</a></li>
-                                @if(Route::has('register'))
-                                    @auth
-                                        @if(Auth::user()->hasAnyRole(['super', 'admin']))
-                                            <li>
-                                                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
-                                            </li>
-                                        @else
-                                            <li>
-                                                <a href="{{ route('user.dashboard') }}">Dashboard</a>
-                                            </li>
-                                        @endif
-                                    @else
-                                        <li>
-                                            <a href="{{ route('register') }}">
-                                                Join Us
-                                            </a>
-                                        </li>
-                                    @endauth
-                                @endif
-                            </ul>
-                        </div>
-                    </div>
                     <div class="col-md-6">
                         <div class="footer-widget">
                             <h3 class="footer-title">Catagories</h3>
@@ -77,7 +50,7 @@
                             <input class="input" type="email" name="email"
                                    placeholder="Enter your email">
                             <button class="newsletter-btn"><i
-                                    class="fa fa-paper-plane"></i></button>
+                                        class="fa fa-paper-plane"></i></button>
                         </form>
                     </div>
                 </div>

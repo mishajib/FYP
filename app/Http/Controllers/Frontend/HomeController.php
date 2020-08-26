@@ -20,6 +20,7 @@ class HomeController extends Controller
         $data['recentPosts']  = $data['posts']->take(6);
         $data['mostReadPost'] = Post::with('categories')->approved()->published()->orderBy('view_count', 'desc')->paginate(4);
         $data['tags']         = Tag::latest()->get();
+        $data['all_cats']     = Category::latest()->get();
         return view('frontend.home')->with($data);
     }
 

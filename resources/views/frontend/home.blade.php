@@ -9,6 +9,24 @@
         <div class="container">
             <!-- row -->
             <div class="row">
+                <div class="col-md-12">
+                    <div class="row cats" style="margin-bottom: 50px;">
+                        <h2 class="text-center" style="margin-bottom: 30px;">All Categories</h2>
+                        @foreach($all_cats as $cat)
+                            <a href="{{ route('frontend.category.posts', $cat->slug) }}">
+                                <div class="col-md-3" style="margin-bottom: 20px;">
+                                    <div class="card text-center" style="box-shadow: 0 0 10px black; padding: 10px; padding-top: 20px;">
+                                        <h3 class="card-title">
+                                            {{ $cat->name }}
+                                        </h3>
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+
+                <h2 class="h2 text-center" style="margin-top: 50px; margin-bottom: 20px;">Featured Post</h2>
                 <!-- post -->
                 @forelse($posts->take(2) as $post)
                     <div class="col-md-6">

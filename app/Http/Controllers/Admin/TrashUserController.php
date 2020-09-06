@@ -9,11 +9,6 @@ class TrashUserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('preventBackHistory');
-        $this->middleware([
-            'auth',
-            'role:super|admin'
-        ]);
         $this->middleware('permission:trash user')->only('index');
         $this->middleware('permission:restore user')->only('restore');
         $this->middleware('permission:delete trash user')->only('destroy');

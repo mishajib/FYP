@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
+use App\Mail\SubscriberPostNotification;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Subscriber;
 use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
@@ -17,9 +20,6 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('preventBackHistory');
-        $this->middleware('auth');
-        $this->middleware(['role:super|admin']);
         $this->middleware('permission:access post')->only(['index', 'show']);
         $this->middleware('permission:create post')->only(['create', 'store']);
         $this->middleware('permission:edit post')->only(['edit', 'update']);
@@ -49,7 +49,7 @@ class PostController extends Controller
     public function create()
     {
         $data['categories'] = Category::all();
-        $data['tags'] = Tag::all();
+        $data['tags']       = Tag::all();
         return view('backend.admin.post.create')->with($data);
     }
 
@@ -64,19 +64,19 @@ class PostController extends Controller
         $request->validated();
         try {
             $image = $request->file('image');
-            $slug = Str::slug($request->title);
+            $slug  = Str::slug($request->title);
 
             if (isset($image)) {
                 //make unique image
                 $currentDate = Carbon::now()->toDateString();
-                $imagename = $slug . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
+                $imagename   = $slug . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
 
                 //make directory if not exists
                 if (!Storage::disk('public')->exists('post')) {
                     Storage::disk('public')->makeDirectory('post');
                 }
 
-                $postImage = Image::make($image)->resize(1600, 1066)->save();
+                $postImage = Image::make($image)->resize(1600, 1066)->stream();
 
                 Storage::disk('public')->put('post/' . $imagename, $postImage);
 
@@ -84,12 +84,12 @@ class PostController extends Controller
                 $imagename = 'post.png';
             }
 
-            $post = new Post();
+            $post          = new Post();
             $post->user_id = Auth::id();
-            $post->title = $request->title;
-            $post->slug = $slug;
-            $post->image = $imagename;
-            $post->body = $request->body;
+            $post->title   = $request->title;
+            $post->slug    = $slug;
+            $post->image   = $imagename;
+            $post->body    = $request->body;
 
             if (isset($request->status)) {
                 $post->status = true;
@@ -103,8 +103,14 @@ class PostController extends Controller
 
             $post->categories()->attach($request->categories);
             $post->tags()->attach($request->tags);
+            $subscribers = Subscriber::pluck('email');
+
+            foreach ( $subscribers as $subscriber ) {
+                Mail::to($subscriber)->queue(new SubscriberPostNotification($post));
+            }
+
             notify()->success('Post successfully added');
-            return redirect(route('admin.post.index'));
+            return back();
         } catch (\Exception $e) {
             notify()->error($e->getMessage());
             return back();
@@ -121,6 +127,10 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::where('slug', $id)->first();
+        if (empty($post)) {
+            notify()->error('No post found!!!');
+            return redirect(route('admin.post.index'));
+        }
         return view('backend.admin.post.show', compact('post'));
     }
 
@@ -132,9 +142,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::where('slug', $id)->first();
+        $post       = Post::where('slug', $id)->first();
         $categories = Category::all();
-        $tags = Tag::all();
+        $tags       = Tag::all();
         return view('backend.admin.post.edit', compact('post', 'categories', 'tags'));
     }
 
@@ -150,12 +160,12 @@ class PostController extends Controller
         $request->validated();
         try {
             $image = $request->file('image');
-            $slug = Str::slug($request->title);
+            $slug  = Str::slug($request->title);
 
             if (isset($image)) {
                 //make unique image
                 $currentDate = Carbon::now()->toDateString();
-                $imagename = $slug . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
+                $imagename   = $slug . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
 
                 //make directory if not exists
                 if (!Storage::disk('public')->exists('post')) {
@@ -175,11 +185,15 @@ class PostController extends Controller
                 $imagename = $post->image;
             }
 
-            $post->user_id = Auth::id();
+            if (Auth::id() != $post->user_id) {
+                $post->user_id = $post->user_id;
+            } else {
+                $post->user_id = Auth::id();
+            }
             $post->title = $request->title;
-            $post->slug = $slug;
+            $post->slug  = $slug;
             $post->image = $imagename;
-            $post->body = $request->body;
+            $post->body  = $request->body;
 
             if (isset($request->status)) {
                 $post->status = true;

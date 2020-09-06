@@ -9,16 +9,23 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
-
+ */
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+//Route::view('test', 'emails.subscription');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('chat', 'Frontend\ChatController@index')->name('chat.index');
+    Route::post('chat/store', 'Frontend\ChatController@store')->name('chat.store');
+    Route::post('comment/{post}', 'Frontend\CommentController@store')->name('comment.store');
+});
+
 # Admin Routes
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', 'role:super|admin']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', 'role:super|admin', 'preventBackHistory']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
     # Role route
@@ -100,10 +107,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::put('post/{id}/approved', 'PostController@approved')->name('post.approved');
     Route::put('post/{id}/pending', 'PostController@pending')->name('post.pending');
     # End Post Route
+
+    # Comment Route
+    Route::get('comment/all', 'CommentController@index')->name('comment.index');
+    Route::delete('comment/{id}/destroy', 'CommentController@destroy')->name('comment.destroy');
+    # End Comment Route
+
+    # Subscriber Route
+    Route::get('subscriber/all', 'SubscriberController@index')->name('subscriber.all');
+    Route::delete('subscriber/{id}/destroy', 'SubscriberController@destroy')->name('subscriber.destroy');
+    # End Subscriber Route
 });
 # End Admin Routes
 
-Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middleware' => ['auth', 'role:user']], function () {
+Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middleware' => ['auth', 'role:user', 'preventBackHistory']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
     # Category Route
@@ -121,11 +138,15 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middl
     # End Tag Route
 
     # Profile route
-    Route::get('profile', 'ProfileController@index')->name("profile.index");
+    Route::get('profile', 'ProfileController@index')->name("profile.index")
+         ->middleware('password.confirm');
     Route::put('profile-update', 'ProfileController@updateProfile')->name('profile.update');
     Route::put('profile-image-update', 'ProfileController@updateProfileImage')->name('profile.image.update');
     Route::put('password-update', 'ProfileController@updatePassword')->name('password.update');
     # End profile route
+
+    # All Comment Route
+    Route::get('comment/all', 'CommentController@index')->name('comment.index');
 
 });
 
@@ -136,6 +157,7 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () {
     Route::get('/tag/{slug}', 'PostController@postByTag')->name('tag.posts');
     Route::get('/posts', 'PostController@index')->name('posts');
     Route::get('/search', 'SearchController@search')->name('search');
-
+    Route::post('subscribe', 'HomeController@subscribe')->name('subscribe');
+    Route::get('contact', 'ContactController@index')->name('contact');
+    Route::post('contact/us', 'ContactController@contactUs')->name('message.send');
 });
-

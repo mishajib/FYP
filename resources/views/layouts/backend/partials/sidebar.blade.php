@@ -2,7 +2,8 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <img src="{{ asset('storage/profile/' . Auth::user()->image) }}" class="img-circle elevation-2"
+            <img src="{{ asset('storage/profile/' . Auth::user()->image) }}"
+                 class="img-circle elevation-2"
                  alt="{{ Auth::user()->username }}">
         </div>
         <div class="info">
@@ -15,10 +16,11 @@
     <!-- Sidebar Menu -->
     @hasanyrole('super|admin')
     <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview"
+            role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
-            <li class="nav-item {{ Request::is('admin/dashboard') ? 'menu-open':'' }}">
+            <li class="nav-item">
                 <a href="{{ route('admin.dashboard') }}"
                    class="nav-link {{ Request::is('admin/dashboard') ? 'active':'' }}">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -29,7 +31,8 @@
             </li>
 
             @can('access category')
-                <li class="nav-item has-treeview {{ Request::is('admin/categories*') || Request::is('admin/category*') ? 'menu-open':'' }}">
+                <li
+                    class="nav-item has-treeview {{ Request::is('admin/categories*') || Request::is('admin/category*') ? 'menu-open':'' }}">
                     <a href="#"
                        class="nav-link {{ Request::is('admin/categories*') || Request::is('admin/category*')  ? 'active':'' }}">
                         <i class="nav-icon fas fa-clipboard-list"></i>
@@ -95,7 +98,8 @@
 
             @can('access tag')
                 <li class="nav-item has-treeview {{ Request::is('admin/tags*') ? 'menu-open':'' }}">
-                    <a href="#" class="nav-link {{ Request::is('admin/tags*') ? 'active':'' }}">
+                    <a href="#"
+                       class="nav-link {{ Request::is('admin/tags*') ? 'active':'' }}">
                         <i class="nav-icon fas fa-tags"></i>
                         <p>
                             Tags
@@ -133,7 +137,8 @@
 
             @can('access post')
                 <li class="nav-item has-treeview {{ Request::is('admin/post*') ? 'menu-open':'' }}">
-                    <a href="#" class="nav-link {{ Request::is('admin/post*') ? 'active':'' }}">
+                    <a href="#"
+                       class="nav-link {{ Request::is('admin/post*') ? 'active':'' }}">
                         <i class="nav-icon fa fa-file-alt"></i>
                         <p>
                             Post
@@ -181,54 +186,37 @@
                 </li>
             @endcan
 
-            <li class="nav-item">
-                <a href="" class="nav-link">
-                    <i class="nav-icon fas fa-star"></i>
-                    <p>
-                        Favourite Posts
-                    </p>
-                </a>
-            </li>
-
             @can('access comment')
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-item">
+                    <a href="{{ route('admin.comment.index') }}"
+                       class="nav-link {{ Request::is('admin/comment/all') ?
+                    'active':'' }}">
                         <i class="nav-icon fas fa-comments"></i>
                         <p>
                             Comments
-                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>
-                                    All comments
-                                    <i class="right fa fa-list-alt"></i>
-                                </p>
-                            </a>
-                        </li>
+                </li>
+            @endcan
 
-                        @can('pending comment')
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>
-                                        Pending comments
-                                        <i class="right fas fa-clock"></i>
-                                    </p>
-                                </a>
-                            </li>
-                        @endcan
 
-                    </ul>
+            @can('access subscriber')
+                <li class="nav-item">
+                    <a href="{{ route('admin.subscriber.all') }}"
+                       class="nav-link {{ Request::is('admin/subscriber/all') ?
+                    'active':'' }}">
+                        <i class="nav-icon fas fa-check"></i>
+                        <p>
+                            Subscribers
+                        </p>
+                    </a>
                 </li>
             @endcan
 
             @can('access user')
                 <li class="nav-item has-treeview {{ Request::is('admin/user*') ? 'menu-open':'' }}">
-                    <a href="#" class="nav-link {{ Request::is('admin/user*') ? 'active':'' }}">
+                    <a href="#"
+                       class="nav-link {{ Request::is('admin/user*') ? 'active':'' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Users
@@ -301,7 +289,8 @@
             @endcan
 
             @can('access role')
-                <li class="nav-item has-treeview {{ Request::is('admin/roles*') || Request::is('admin/role*') ? 'menu-open':'' }}">
+                <li
+                    class="nav-item has-treeview {{ Request::is('admin/roles*') || Request::is('admin/role*') ? 'menu-open':'' }}">
                     <a href="#"
                        class="nav-link {{ Request::is('admin/roles*') || Request::is('admin/role*') ? 'active':'' }}">
                         <i class="nav-icon fas fa-user-tag"></i>
@@ -366,7 +355,8 @@
             @endcan
 
             @can('access permission')
-                <li class="nav-item has-treeview {{ Request::is('admin/permissions*') || Request::is('admin/permission*') ? 'menu-open':'' }}">
+                <li
+                    class="nav-item has-treeview {{ Request::is('admin/permissions*') || Request::is('admin/permission*') ? 'menu-open':'' }}">
                     <a href="#"
                        class="nav-link {{ Request::is('admin/permissions*') || Request::is('admin/permission*') ? 'active':'' }}">
                         <i class="nav-icon fas fa-user-tag"></i>
@@ -457,15 +447,6 @@
                 </li>
             @endcan
 
-            <li class="nav-item">
-                <a href="" class="nav-link">
-                    <i class="nav-icon fas fa-address-book"></i>
-                    <p>
-                        Contacts
-                    </p>
-                </a>
-            </li>
-
             <li class="nav-header">SETTING</li>
 
             <li class="nav-item">
@@ -479,12 +460,14 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('login') }}" class="nav-link" onclick="event.preventDefault();logoutFunction();">
+                <a href="{{ route('login') }}" class="nav-link"
+                   onclick="event.preventDefault();logoutFunction();">
                     <i class="nav-icon fas fa-sign-out-alt"></i>
                     <p>
                         {{ __('Logout') }}
                     </p>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    <form id="logout-form" action="{{ route('logout') }}"
+                          method="POST">
                         @csrf
                     </form>
                 </a>
@@ -495,7 +478,8 @@
 
     @hasrole('user')
     <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview"
+            role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
             <li class="nav-item {{ Request::is('user/dashboard') ? 'menu-open':'' }}">
@@ -509,7 +493,8 @@
             </li>
 
             @can('access category')
-                <li class="nav-item has-treeview {{ Request::is('user/categories*') || Request::is('admin/category*') ? 'menu-open':'' }}">
+                <li
+                    class="nav-item has-treeview {{ Request::is('user/categories*') || Request::is('admin/category*') ? 'menu-open':'' }}">
                     <a href="#"
                        class="nav-link {{ Request::is('user/categories*') || Request::is('admin/category*')  ? 'active':'' }}">
                         <i class="nav-icon fas fa-clipboard-list"></i>
@@ -549,7 +534,8 @@
 
             @can('access tag')
                 <li class="nav-item has-treeview {{ Request::is('user/tags*') ? 'menu-open':'' }}">
-                    <a href="#" class="nav-link {{ Request::is('user/tags*') ? 'active':'' }}">
+                    <a href="#"
+                       class="nav-link {{ Request::is('user/tags*') ? 'active':'' }}">
                         <i class="nav-icon fas fa-tags"></i>
                         <p>
                             Tags
@@ -587,7 +573,8 @@
 
             @can('access post')
                 <li class="nav-item has-treeview {{ Request::is('user/post*') ? 'menu-open':'' }}">
-                    <a href="#" class="nav-link {{ Request::is('user/post*') ? 'active':'' }}">
+                    <a href="#"
+                       class="nav-link {{ Request::is('user/post*') ? 'active':'' }}">
                         <i class="nav-icon fa fa-file-alt"></i>
                         <p>
                             Post
@@ -635,84 +622,17 @@
                 </li>
             @endcan
 
-            <li class="nav-item">
-                <a href="" class="nav-link">
-                    <i class="nav-icon fas fa-star"></i>
-                    <p>
-                        Favourite Posts
-                    </p>
-                </a>
-            </li>
-
             @can('access comment')
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-item">
+                    <a href="{{ route('user.comment.index') }}" class="nav-link {{ Request::is('user/comment/all') ?
+                    'active':'' }}">
                         <i class="nav-icon fas fa-comments"></i>
                         <p>
                             Comments
-                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>
-                                    All comments
-                                    <i class="right fa fa-list-alt"></i>
-                                </p>
-                            </a>
-                        </li>
-
-                        @can('pending comment')
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>
-                                        Pending comments
-                                        <i class="right fas fa-clock"></i>
-                                    </p>
-                                </a>
-                            </li>
-                        @endcan
-
-                    </ul>
                 </li>
             @endcan
-
-            @can('access user')
-                <li class="nav-item has-treeview {{ Request::is('user/user*') ? 'menu-open':'' }}">
-                    <a href="#" class="nav-link {{ Request::is('user/user*') ? 'active':'' }}">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>
-                            Users
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('user.user.index') }}"
-                               class="nav-link {{ Request::is('user/user') ? 'active':'' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>
-                                    All user
-                                    <i class="right fa fa-list-alt"></i>
-                                </p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
-            @endcan
-
-            <li class="nav-item">
-                <a href="" class="nav-link">
-                    <i class="nav-icon fas fa-address-book"></i>
-                    <p>
-                        Contacts
-                    </p>
-                </a>
-            </li>
 
             <li class="nav-header">SETTING</li>
 
@@ -727,12 +647,14 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('login') }}" class="nav-link" onclick="event.preventDefault();logoutFunction();">
+                <a href="{{ route('login') }}" class="nav-link"
+                   onclick="event.preventDefault();logoutFunction();">
                     <i class="nav-icon fas fa-sign-out-alt"></i>
                     <p>
                         {{ __('Logout') }}
                     </p>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    <form id="logout-form" action="{{ route('logout') }}"
+                          method="POST">
                         @csrf
                     </form>
                 </a>

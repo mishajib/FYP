@@ -7,7 +7,8 @@
                 <!-- logo -->
                 <div class="nav-logo">
                     <a href="{{ route('frontend.home') }}" class="logo"><img
-                            src="{{ asset('assets/frontend/img/logo.png') }}" alt=""></a>
+                            src="{{ asset('assets/frontend/img/logo.png') }}"
+                            alt=""></a>
                 </div>
                 <!-- /logo -->
 
@@ -17,12 +18,17 @@
 
                 <!-- search & aside toggle -->
                 <div class="nav-btns">
-                    <button class="aside-btn"><i class="fa fa-bars"></i></button>
-                    <button class="search-btn"><i class="fa fa-search"></i></button>
+                    <button class="aside-btn"><i class="fa fa-bars"></i>
+                    </button>
+                    <button class="search-btn"><i class="fa fa-search"></i>
+                    </button>
                     <form action="{{ route('frontend.search') }}">
                         <div class="search-form">
-                            <input class="search-input" type="text" name="query" placeholder="Enter Your Search ..." value="{{ isset($query) ? $query : '' }}">
-                            <button type="button" class="search-close"><i class="fa fa-times"></i></button>
+                            <input class="search-input" type="text" name="query"
+                                   placeholder="Enter Your Search ..."
+                                   value="{{ isset($query) ? $query : '' }}">
+                            <button type="button" class="search-close"><i
+                                    class="fa fa-times"></i></button>
                         </div>
                     </form>
                 </div>
@@ -46,33 +52,23 @@
                 <h2>Catagories</h2>
                 <div class="category-widget">
                     <ul>
-                        @forelse($categories->where('is_approved', 1)->where('status', 1) as $ckey => $category)
+                        @forelse($categories->where('is_approved', 1) as $ckey => $category)
                             <li>
-                                <a href="{{ route('frontend.category.posts', $category->slug) }}" class="cat-{{ ++$ckey }}">
-                                    {{ $category->name }}<span>{{ count($category->posts) }}</span>
+                                <a href="{{ route('frontend.category.posts', $category->slug) }}"
+                                   class="cat-{{ ++$ckey }}">
+                                    {{ $category->name }}
+                                    <span>{{ count($category->posts) }}</span>
                                 </a>
                             </li>
                         @empty
                             <span class="text-danger">
                                         {{ __("No category found!!!") }}
-                                    </span>
+                            </span>
                         @endforelse
                     </ul>
                 </div>
             </div>
             <!-- /categories -->
-
-            <!-- social links -->
-            <div class="section-row">
-                <h3>Follow us</h3>
-                <ul class="nav-aside-social">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                </ul>
-            </div>
-            <!-- /social links -->
 
             <!-- aside nav close -->
             <button class="nav-aside-close"><i class="fa fa-times"></i></button>

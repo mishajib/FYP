@@ -6,7 +6,9 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="@yield("breadcrumb-url", "Enter breadcrumb url here")">@yield("from-breadcrumb", "Enter main breadcrumb")</a></li>
+                    <li class="breadcrumb-item"><a
+                            href="@yield("breadcrumb-url", "Enter breadcrumb url here")">@yield("from-breadcrumb", "Enter main breadcrumb")</a>
+                    </li>
                     <li class="breadcrumb-item active">@yield("to-breadcrumb", "Enter sub breadcrumb")</li>
                 </ol>
             </div><!-- /.col -->

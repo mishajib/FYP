@@ -17,9 +17,6 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('preventBackHistory');
-        $this->middleware('auth');
-        $this->middleware(['role:user']);
         $this->middleware('permission:access post')->only(['index', 'show']);
         $this->middleware('permission:create post')->only(['create', 'store']);
         $this->middleware('permission:edit post')->only(['edit', 'update']);
@@ -176,7 +173,11 @@ class PostController extends Controller
                 $imagename = $post->image;
             }
 
-            $post->user_id = Auth::id();
+            if (Auth::id() != $post->user_id) {
+                $post->user_id = $post->user_id;
+            } else {
+                $post->user_id = Auth::id();
+            }
             $post->title = $request->title;
             $post->slug = $slug;
             $post->image = $imagename;

@@ -14,15 +14,10 @@ class CategoryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('preventBackHistory');
-        $this->middleware([
-            'auth',
-            'role:user',
-        ]);
         $this->middleware('permission:access category')->only(['index', 'show']);
         $this->middleware('permission:create category')->only(['create', 'store']);
         $this->middleware('permission:edit category')->only(['edit', 'update']);
-        $this->middleware('permission:delete category   ')->only('destroy');
+        $this->middleware('permission:delete category')->only('destroy');
     }
 
     /**
@@ -88,7 +83,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         try {
-            $category = Category::where('slug', $id)->first();
+            $category = Category::where('slug', $id)->with('posts')->first();
             return view('backend.user.category.show', compact('category'));
         } catch (ModelNotFoundException $e) {
             notify()->error('Category not found by ID ' . $id);
@@ -106,7 +101,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         try {
-            $category = Category::where('slug', $id)->first();
+            $category   = Category::where('slug', $id)->first();
             $categories = Category::all();
             return view('backend.user.category.edit', compact('category', 'categories'));
         } catch (\Exception $e) {
@@ -125,26 +120,14 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         $request->validated();
-        try {
-            $category = Category::findOrFail($id);
-            if (!empty($request->category)) {
-                $category->parent_id = $request->category;
-            } else {
-                $category->parent_id = null;
-            }
-            $category->name = $request->name;
-            $category->slug = Str::slug($request->name);
-            if (Auth::user()->hasRole('super')) {
-                $category->is_approved = true;
-            } else {
-                $category->is_approved = false;
-            }
-            notify()->success("Category successfully updated");
-            return redirect(route('user.categories.index'));
-        } catch (\Exception $e) {
-            notify()->error($e->getMessage());
-            return back();
-        }
+        $category              = Category::findOrFail($id);
+        $category->name        = $request->name;
+        $category->slug        = Str::slug($request->name);
+        $category->parent_id   = $request->category;
+        $category->is_approved = false;
+        $category->save();
+        notify()->success("Category successfully updated");
+        return redirect(route('user.categories.index'));
     }
 
     /**

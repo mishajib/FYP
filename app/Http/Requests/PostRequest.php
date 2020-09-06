@@ -27,7 +27,7 @@ class PostRequest extends FormRequest
             case "PUT":
                 $rules = [
                     'title' => 'required',
-                    'image' => 'bail|required,:id|image',
+                    'image' => 'image',
                     'categories' => 'required',
                     'tags' => 'required',
                     'body' => 'required',

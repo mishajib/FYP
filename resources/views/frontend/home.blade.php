@@ -9,12 +9,33 @@
         <div class="container">
             <!-- row -->
             <div class="row">
+                <div class="col-md-12">
+                    <div class="row cats" style="margin-bottom: 50px;">
+                        <h2 class="text-center" style="margin-bottom: 30px;">All Categories</h2>
+                        @foreach($all_cats as $cat)
+                            <a href="{{ route('frontend.category.posts', $cat->slug) }}">
+                                <div class="col-md-3" style="margin-bottom: 20px;">
+                                    <div class="card text-center" style="box-shadow: 0 0 10px black; padding: 10px; padding-top: 20px;">
+                                        <h3 class="card-title">
+                                            {{ $cat->name }}
+                                        </h3>
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+
+                <h2 class="h2 text-center" style="margin-top: 50px; margin-bottom: 20px;">Featured Post</h2>
                 <!-- post -->
                 @forelse($posts->take(2) as $post)
                     <div class="col-md-6">
                         <div class="post post-thumb">
-                            <a class="post-img" href="{{ route('frontend.post.details', $post->slug) }}">
-                                <img src="{{ asset('storage/post/'.$post->image) }}" alt="{{ $post->title }}">
+                            <a class="post-img"
+                               href="{{ route('frontend.post.details', $post->slug) }}">
+                                <img
+                                        src="{{ asset('storage/post/'.$post->image) }}"
+                                        alt="{{ $post->title }}">
                             </a>
                             <div class="post-body">
                                 <div class="post-meta">
@@ -28,7 +49,8 @@
                                         <br><br>
 
                                     @empty
-                                        <a href="javascript:void(0)" class="post-category">
+                                        <a href="javascript:void(0)"
+                                           class="post-category">
                                             <span class="text-danger">
                                                 {{ __("No category found!!!") }}
                                             </span>
@@ -42,12 +64,21 @@
                                     <a href="{{ route('frontend.post.details', $post->slug) }}">
                                         {{ $post->title }}
                                     </a>
+                                    <p style="color: #fff; margin-top: 10px;
+                                    font-size: 12px;"
+                                       class="text-justify">
+                                        {{
+                                            Str::words(strip_tags($post->body), 15)
+                                        }}
+                                    </p>
                                 </h3>
                             </div>
                         </div>
                     </div>
                 @empty
-                    <h2><span class="text-danger">{{ __('No post found!!!') }}</span></h2>
+                    <h2><span
+                                class="text-danger">{{ __('No post found!!!') }}</span>
+                    </h2>
             @endforelse
             <!-- /post -->
             </div>
@@ -66,9 +97,11 @@
                     @foreach($chunk as $post)
                         <div class="col-md-4">
                             <div class="post">
-                                <a class="post-img" href="{{ route('frontend.post.details', $post->slug) }}">
-                                    <img src="{{ asset('storage/post/'.$post->image) }}"
-                                         alt="{{ $post->title }}">
+                                <a class="post-img"
+                                   href="{{ route('frontend.post.details', $post->slug) }}">
+                                    <img
+                                            src="{{ asset('storage/post/'.$post->image) }}"
+                                            alt="{{ $post->title }}">
                                 </a>
                                 <div class="post-body">
                                     <div class="post-meta">
@@ -82,7 +115,8 @@
                                             <br><br>
 
                                         @empty
-                                            <a href="javascript:void(0)" class="post-category">
+                                            <a href="javascript:void(0)"
+                                               class="post-category">
                                             <span class="text-danger">
                                                 {{ __("No category found!!!") }}
                                             </span>
@@ -123,9 +157,11 @@
                             <!-- post -->
                                 <div class="col-md-12">
                                     <div class="post post-thumb">
-                                        <a class="post-img" href="{{ route('frontend.post.details', $post->slug) }}">
-                                            <img src="{{ asset('storage/post/'.$post->image) }}"
-                                                 alt="{{ $post->title }}">
+                                        <a class="post-img"
+                                           href="{{ route('frontend.post.details', $post->slug) }}">
+                                            <img
+                                                    src="{{ asset('storage/post/'.$post->image) }}"
+                                                    alt="{{ $post->title }}">
                                         </a>
                                         <div class="post-body">
                                             <div class="post-meta">
@@ -135,7 +171,8 @@
                                                         {{ $category->name }}
                                                     </a>
                                                 @empty
-                                                    <a href="javascript:void(0)" class="post-category">
+                                                    <a href="javascript:void(0)"
+                                                       class="post-category">
                                             <span class="text-danger">
                                                 {{ __("No category found!!!") }}
                                             </span>
@@ -158,9 +195,11 @@
                             <!-- post -->
                                 <div class="col-md-6">
                                     <div class="post">
-                                        <a class="post-img" href="{{ route('frontend.post.details', $post->slug) }}">
-                                            <img src="{{ asset('storage/post/'.$post->image) }}"
-                                                 alt="{{ $post->title }}">
+                                        <a class="post-img"
+                                           href="{{ route('frontend.post.details', $post->slug) }}">
+                                            <img
+                                                    src="{{ asset('storage/post/'.$post->image) }}"
+                                                    alt="{{ $post->title }}">
                                         </a>
                                         <div class="post-body">
                                             <div class="post-meta">
@@ -174,7 +213,8 @@
                                                     <br><br>
 
                                                 @empty
-                                                    <a href="javascript:void(0)" class="post-category">
+                                                    <a href="javascript:void(0)"
+                                                       class="post-category">
                                             <span class="text-danger">
                                                 {{ __("No category found!!!") }}
                                             </span>
@@ -204,7 +244,8 @@
                         <div class="col-md-12">
                             <div class="section-row">
                                 <p class="text-center">
-                                    <a href="{{ route('frontend.posts') }}" class="primary-button">
+                                    <a href="{{ route('frontend.posts') }}"
+                                       class="primary-button">
                                         Load More
                                     </a>
                                 </p>
@@ -221,9 +262,11 @@
                         </div>
                         @forelse($mostReadPost->take(4) as $post)
                             <div class="post post-widget">
-                                <a class="post-img" href="{{ route('frontend.post.details', $post->slug) }}">
-                                    <img src="{{ asset('storage/post/'.$post->image) }}"
-                                         alt="{{ $post->title }}">
+                                <a class="post-img"
+                                   href="{{ route('frontend.post.details', $post->slug) }}">
+                                    <img
+                                            src="{{ asset('storage/post/'.$post->image) }}"
+                                            alt="{{ $post->title }}">
                                 </a>
                                 <div class="post-body">
                                     <h3 class="post-title">
@@ -251,8 +294,9 @@
                         @forelse($posts->take(2) as $post)
                             <div class="post post-thumb">
                                 <a class="post-img" href="#">
-                                    <img src="{{ asset('storage/post/'.$post->image) }}"
-                                         alt="{{ $post->title }}">
+                                    <img
+                                            src="{{ asset('storage/post/'.$post->image) }}"
+                                            alt="{{ $post->title }}">
                                 </a>
                                 <div class="post-body">
                                     <div class="post-meta">
@@ -266,7 +310,8 @@
                                             <br><br>
 
                                         @empty
-                                            <a href="javascript:void(0)" class="post-category">
+                                            <a href="javascript:void(0)"
+                                               class="post-category">
                                             <span class="text-danger">
                                                 {{ __("No category found!!!") }}
                                             </span>
@@ -297,7 +342,9 @@
                     <!-- ad -->
                     <div class="aside-widget text-center">
                         <a href="#" style="display: inline-block;margin: auto;">
-                            <img class="img-responsive" src="{{ asset('assets/frontend/img/ad-1.jpg') }}" alt="">
+                            <img class="img-responsive"
+                                 src="{{ asset('assets/frontend/img/ad-1.jpg') }}"
+                                 alt="">
                         </a>
                     </div>
                     <!-- /ad -->
@@ -325,9 +372,11 @@
                 @forelse($posts->take(3) as $post)
                     <div class="col-md-4">
                         <div class="post">
-                            <a class="post-img" href="{{ route('frontend.post.details', $post->slug) }}">
-                                <img src="{{ asset('storage/post/'.$post->image) }}"
-                                     alt="{{ $post->title }}">
+                            <a class="post-img"
+                               href="{{ route('frontend.post.details', $post->slug) }}">
+                                <img
+                                        src="{{ asset('storage/post/'.$post->image) }}"
+                                        alt="{{ $post->title }}">
                             </a>
                             <div class="post-body">
                                 <div class="post-meta">
@@ -341,7 +390,8 @@
                                         <br><br>
 
                                     @empty
-                                        <a href="javascript:void(0)" class="post-category">
+                                        <a href="javascript:void(0)"
+                                           class="post-category">
                                             <span class="text-danger">
                                                 {{ __("No category found!!!") }}
                                             </span>
@@ -392,9 +442,11 @@
                             @forelse($mostReadPost->take(4) as $post)
                                 <div class="col-md-12">
                                     <div class="post post-row">
-                                        <a class="post-img" href="{{ route('frontend.post.details', $post->slug) }}">
-                                            <img src="{{ asset('storage/post/'.$post->image) }}"
-                                                 alt="{{ $post->title }}">
+                                        <a class="post-img"
+                                           href="{{ route('frontend.post.details', $post->slug) }}">
+                                            <img
+                                                    src="{{ asset('storage/post/'.$post->image) }}"
+                                                    alt="{{ $post->title }}">
                                         </a>
                                         <div class="post-body">
                                             <div class="post-meta">
@@ -405,10 +457,11 @@
                                                             {{ $category->name }}
                                                         </a>
                                                     @endforeach
-                                                        <br><br>
+                                                    <br><br>
 
                                                 @empty
-                                                    <a href="javascript:void(0)" class="post-category">
+                                                    <a href="javascript:void(0)"
+                                                       class="post-category">
                                             <span class="text-danger">
                                                 {{ __("No category found!!!") }}
                                             </span>
@@ -445,8 +498,11 @@
                 <div class="col-md-4">
                     <!-- ad -->
                     <div class="aside-widget text-center">
-                        <a href="{{ route('frontend.home') }}" style="display: inline-block;margin: auto;">
-                            <img class="img-responsive" src="{{ asset('assets/frontend/img/ad-1.jpg') }}" alt="">
+                        <a href="{{ route('frontend.home') }}"
+                           style="display: inline-block;margin: auto;">
+                            <img class="img-responsive"
+                                 src="{{ asset('assets/frontend/img/ad-1.jpg') }}"
+                                 alt="">
                         </a>
                     </div>
                     <!-- /ad -->
@@ -458,11 +514,12 @@
                         </div>
                         <div class="category-widget">
                             <ul class="category-scroll">
-                                @forelse($categories->where('is_approved', 1)->where('status', 1) as $ckey => $category)
+                                @forelse($categories->where('is_approved', 1) as $ckey => $category)
                                     <li>
                                         <a href="{{ route('frontend.category.posts', $category->slug) }}"
                                            class="cat-{{ ++$ckey }}">
-                                            {{ $category->name }}<span>{{ count($category->posts) }}</span>
+                                            {{ $category->name }}
+                                            <span>{{ count($category->posts) }}</span>
                                         </a>
                                     </li>
                                 @empty
@@ -480,7 +537,7 @@
                     <div class="aside-widget">
                         <div class="tags-widget">
                             <ul>
-                                @forelse($post->tags as $tag)
+                                @forelse($tags as $tag)
                                     <li>
                                         <a href="#">
                                             {{ $tag->name }}

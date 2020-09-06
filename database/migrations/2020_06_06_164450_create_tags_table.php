@@ -18,6 +18,7 @@ class CreateTagsTable extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->boolean('is_approved')->default(false);
+            $table->boolean('is_default')->default(false);
             $table->timestamps();
         });
     }

@@ -7,7 +7,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="text-center">{{ $posts->count() }} results for {{ $query }}</h1>
+                    <h1 class="text-center">{{ $posts->count() }} results
+                        for {{ $query }}</h1>
                 </div>
             </div>
         </div>
@@ -26,8 +27,11 @@
                     @forelse($posts as $post)
                         <div class="col-md-6">
                             <div class="post post-thumb">
-                                <a class="post-img" href="{{ route('frontend.post.details', $post->slug) }}">
-                                    <img src="{{ asset('storage/post/'.$post->image) }}" alt="">
+                                <a class="post-img"
+                                   href="{{ route('frontend.post.details', $post->slug) }}">
+                                    <img
+                                        src="{{ asset('storage/post/'.$post->image) }}"
+                                        alt="">
                                 </a>
                                 <div class="post-body">
                                     <div class="post-meta">
@@ -41,7 +45,8 @@
                                             <br><br>
 
                                         @empty
-                                            <a href="javascript:void(0)" class="post-category">
+                                            <a href="javascript:void(0)"
+                                               class="post-category">
                                             <span class="text-danger">
                                                 {{ __("No category found!!!") }}
                                             </span>
